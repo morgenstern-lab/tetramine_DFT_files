@@ -1,0 +1,81 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETSHplus_B3LYP_TZP_gas_frag_neutral.CH2	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        H 0.7528331527612241 2.009505279575377 -1.307132878016207 region=CH2
+        C 0.1030275179537244 1.138978980304572 -1.290784342208283 region=CH2
+        H -0.5841553327311356 1.151777109527399 -2.133353614029902 region=CH2
+    End
+    Symmetrize Yes
+    BondOrders
+         2 1 1.0
+         2 3 1.0
+    End
+End
+Symmetry
+    SymmetrizeTolerance 1.0e-7
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Title CH2 fragment
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    NOSYMFIT
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+cp $JOB.results/adf.rkf CH2.rkf
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

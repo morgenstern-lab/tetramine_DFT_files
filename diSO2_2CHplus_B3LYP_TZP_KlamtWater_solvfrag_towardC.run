@@ -1,0 +1,160 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=diSO2_2CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        N -1.616526989197564 -0.03764937132087211 -1.23130929237543 region=rest adf.R=1.83 adf.f=rest
+        C -1.702799351763659 -1.347877216442942 -0.3891065124832625 region=rest adf.R=2.00 adf.f=rest
+        N -1.22488851266338 -1.2332086212378 0.9596212452990229 region=rest adf.R=1.83 adf.f=rest
+        C -1.674984949801983 -0.03103274539830913 1.651676203907267 region=rest adf.R=2.00 adf.f=rest
+        N -1.195540439365493 1.15716301830487 0.9557354712551405 region=rest adf.R=1.83 adf.f=rest
+        C -1.660857764845389 1.280001931847717 -0.3998756904653635 region=rest adf.R=2.00 adf.f=rest
+        N 1.227261790503633 -0.02216730075881245 -0.9010046137036376 region=rest adf.R=1.83 adf.f=rest
+        C 1.838677616033946 -1.226168878044437 -0.3702727829258724 region=rest adf.R=2.00 adf.f=rest
+        N 1.554344665235556 -1.289890253210298 1.078136845477899 region=rest adf.R=1.83 adf.f=rest
+        C 1.970425199003085 -0.05898873719734114 1.783106462188325 region=rest adf.R=2.00 adf.f=rest
+        N 1.585857961099611 1.194905647423965 1.101766116312031 region=rest adf.R=1.83 adf.f=rest
+        C 1.880260858371789 1.14768067038323 -0.3444344733540342 region=rest adf.R=2.00 adf.f=rest
+        C 0.8067053192566835 0.004904840534216819 -2.287230150285206 region=rest adf.R=2.00 adf.f=rest
+        S 0.1385886670118937 -2.046178286159988 1.49965232189522 region=rest adf.R=2.16 adf.f=rest
+        S 0.1688885819680661 1.956846941455424 1.513945425001039 region=rest adf.R=2.16 adf.f=rest
+        H 2.9721282057427 1.102358904568524 -0.4346952436751162 region=rest adf.R=1.30 adf.f=rest
+        H 1.5337856674589 2.059397171954019 -0.8187864717296224 region=rest adf.R=1.30 adf.f=rest
+        O 0.1280717727304246 -3.298431049086943 0.7842051698044 region=rest adf.R=1.72 adf.f=rest
+        O 0.06112156759457741 -1.981297424560925 2.937859828431956 region=rest adf.R=1.72 adf.f=rest
+        O 0.1743572637215171 3.214073755085911 0.8070878391972673 region=rest adf.R=1.72 adf.f=rest
+        O 0.07681419223953992 1.883029283092646 2.950936316068876 region=rest adf.R=1.72 adf.f=rest
+        H -1.18295001378603 -2.125821255019348 -0.9354107180353244 region=rest adf.R=1.30 adf.f=rest
+        H -2.766971646381865 -1.573607034346757 -0.3654148535916606 region=rest adf.R=1.30 adf.f=rest
+        H -1.339405044816322 -0.03332242925851622 2.680754766874395 region=rest adf.R=1.30 adf.f=rest
+        H -2.766091331485704 -0.01934678590649554 1.637315640808645 region=rest adf.R=1.30 adf.f=rest
+        H -1.110531553851851 2.036702087737531 -0.9460881111547897 region=rest adf.R=1.30 adf.f=rest
+        H -2.716242278868484 1.544329990764594 -0.3846383383687079 region=rest adf.R=1.30 adf.f=rest
+        H 2.93064544559671 -1.219019547343203 -0.4703770734003634 region=rest adf.R=1.30 adf.f=rest
+        H 1.456053532066192 -2.116365818259804 -0.8579254628853414 region=rest adf.R=1.30 adf.f=rest
+        H 3.059675958837584 -0.07139619819156426 1.796148616353875 region=rest adf.R=1.30 adf.f=rest
+        H 1.605366828036674 -0.06475868004700834 2.802963279066339 region=rest adf.R=1.30 adf.f=rest
+        H 1.16610934508692 0.91619913914121 -2.762857481854223 region=rest adf.R=1.30 adf.f=rest
+        H 1.248857551217836 -0.8236237348182806 -2.84115457722176 region=rest adf.R=1.30 adf.f=rest
+        C -0.7312616164170961 -0.06552861370156242 -2.473535704049876 region=CH2 adf.R=2.00 adf.f=CH2
+        H -1.024563875815607 -0.978337534371735 -2.987482579694735 region=CH2 adf.R=1.30 adf.f=CH2
+        H -1.082291033057389 0.772427196557872 -3.072036551238238 region=CH2 adf.R=1.30 adf.f=CH2
+        H -2.53731565840067 -0.02674528217303695 -1.668805163030153 region=rest adf.R=1.30 adf.f=rest
+    End
+    Charge 1.0
+    BondOrders
+         1 2 1.0
+         1 6 1.0
+         1 34 1.0
+         1 37 1.0
+         2 3 1.0
+         2 22 1.0
+         2 23 1.0
+         3 4 1.0
+         3 14 1.0
+         4 5 1.0
+         4 24 1.0
+         4 25 1.0
+         5 6 1.0
+         5 15 1.0
+         6 26 1.0
+         6 27 1.0
+         7 8 1.0
+         7 12 1.0
+         7 13 1.0
+         8 9 1.0
+         8 28 1.0
+         8 29 1.0
+         9 10 1.0
+         9 14 1.0
+         10 11 1.0
+         10 30 1.0
+         10 31 1.0
+         11 12 1.0
+         11 15 1.0
+         12 16 1.0
+         12 17 1.0
+         13 32 1.0
+         13 33 1.0
+         13 34 1.0
+         14 18 2.0
+         14 19 2.0
+         15 20 2.0
+         15 21 2.0
+         34 35 1.0
+         34 36 1.0
+    End
+End
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Fragments
+        CH2 diSO2_2CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC.CH2.results/adf.rkf 
+        rest diSO2_2CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC.rest.results/adf.rkf 
+    End
+    
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

@@ -1,0 +1,134 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+UseSymmetry No
+System
+    Atoms
+        H 0.6459869619919498 -1.10910004437192 2.114915416352121 region=rest adf.R=1.30 adf.f=rest
+        H -0.6115052357130621 -2.037471327357554 1.260363993175607 region=rest adf.R=1.30 adf.f=rest
+        C 1.680498000503118 0.1834752667065609 3.116206395640207e-10 region=CH2 adf.R=2.00 adf.f=CH2
+        N 0.8357019640805152 -1.101871631996593 2.588695406194409e-10 region=rest adf.R=1.83 adf.f=rest
+        N 0.7870006027928681 1.311887007456038 -2.561744309455349e-10 region=rest adf.R=1.83 adf.f=rest
+        N -0.8810581876939955 0.06060647186948834 -1.29297881086561 region=rest adf.R=1.83 adf.f=rest
+        S -1.976699595993084 0.0214913198838212 1.017372070544189e-11 region=rest adf.R=2.16 adf.f=rest
+        N -0.8810581875979413 0.06060647192404458 1.292978810926991 region=rest adf.R=1.83 adf.f=rest
+        O -2.715159111954275 1.252931559566933 -5.708621493782483e-11 region=rest adf.R=1.72 adf.f=rest
+        O -2.635576042267623 -1.25614722000882 5.001524409470074e-11 region=rest adf.R=1.72 adf.f=rest
+        C -0.02706312305686925 -1.124351626271455 -1.262158494675282 region=rest adf.R=2.00 adf.f=rest
+        C -0.037033987404224 1.311167922419314 1.208706279053089 region=rest adf.R=2.00 adf.f=rest
+        C -0.0370339875165463 1.311167922328186 -1.208706279305303 region=rest adf.R=2.00 adf.f=rest
+        C -0.02706312316201193 -1.124351626579067 1.262158495035914 region=rest adf.R=2.00 adf.f=rest
+        H 0.6459869621572044 -1.109100043571971 -2.114915415900227 region=rest adf.R=1.30 adf.f=rest
+        H -0.6115052352684298 -2.037471327283051 -1.260363993133858 region=rest adf.R=1.30 adf.f=rest
+        H 0.5957319538714462 1.322035023225315 2.092760768841616 region=rest adf.R=1.30 adf.f=rest
+        H -0.6953610762037652 2.172767112226918 1.220020719662666 region=rest adf.R=1.30 adf.f=rest
+        H -0.6953610762658391 2.172767112167479 -1.220020719866852 region=rest adf.R=1.30 adf.f=rest
+        H 0.5957319536274961 1.322035023053605 -2.092760769178879 region=rest adf.R=1.30 adf.f=rest
+        H 2.299399901945604 0.1595637021722017 -0.8925487102510954 region=CH2 adf.R=1.30 adf.f=CH2
+        H 2.299399902307833 0.1595637021499613 0.8925487106462859 region=CH2 adf.R=1.30 adf.f=CH2
+        H 1.446039766819632 -1.922200759709437 -8.346004323054531e-10 region=rest adf.R=1.30 adf.f=rest
+    End
+    Charge 1.0
+    BondOrders
+         1 14 1.0
+         2 14 1.0
+         3 4 1.0
+         3 5 1.0
+         3 21 1.0
+         3 22 1.0
+         4 11 1.0
+         4 14 1.0
+         4 23 1.0
+         5 12 1.0
+         5 13 1.0
+         6 7 1.0
+         6 11 1.0
+         6 13 1.0
+         7 8 1.0
+         7 9 2.0
+         7 10 2.0
+         8 12 1.0
+         8 14 1.0
+         11 15 1.0
+         11 16 1.0
+         12 17 1.0
+         12 18 1.0
+         13 19 1.0
+         13 20 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Fragments
+        CH2 monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC.CH2.results/adf.rkf 
+        rest monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC.rest.results/adf.rkf 
+    End
+    
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+cp $JOB.results/adf.rkf rest.rkf
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch
