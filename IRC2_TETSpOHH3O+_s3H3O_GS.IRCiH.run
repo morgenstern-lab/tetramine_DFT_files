@@ -1,0 +1,139 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETSpOHH3O+_s3H3O_GS.IRCiH	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='23:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 64 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+########
+
+Task IRC
+GeometryOptimization
+    InitialHessian
+        Type Calculate
+    End
+End
+IRC
+    InitialHessian
+        Type FromFile
+        File /home/jgertner/AMS/tetramine/HEXS_manual_calcs/TETS_step3/s3H3O/TETSpOHH3O+_s3H3O_GS.TS_search.results/adf.rkf
+    End
+    KeepConvergedResults No
+End
+System
+    Atoms
+        O 2.422258190060905 -0.7503118619543768 -0.2384417394201225 
+        O 1.505733150629943 0.08892928205787087 1.955030710537433 
+        S 1.347220011190513 -0.260359428932732 0.5739124176619362 
+        N 0.7127886617710729 1.08366891964832 -0.2447175908950124 
+        N -0.00680355321177049 -1.274877686624775 0.477643574480867 
+        N -1.642722361740008 1.363236258474372 0.6192021613908985 
+        S -2.203317457219678 0.5515488356511929 -0.8119105653914771 
+        N -0.8980435953203009 -0.1953098939812062 -1.498896838327217 
+        O -3.189539640296871 -0.4099733321747364 -0.4347465242889999 
+        O -2.533710734667657 1.671912908939671 -1.68549058233155 
+        C -0.2358541282420376 1.92697666723876 0.4611763793313857 
+        C -0.5162885014723608 -1.486124881492228 -0.8976641474305261 
+        C -1.940965028466634 0.7597589086211405 1.939929372389367 
+        C 0.2684638901902779 0.7265589997079988 -1.594926032392557 
+        H 0.1291948739881986 2.141872522579569 1.460714357322765 
+        H -0.3076941993896274 2.85469319111947 -0.1044560878784078 
+        H 0.2224181971170631 -1.926936305733138 -1.569805011771442 
+        H -1.386292389804119 -2.133483035106869 -0.8390874657723765 
+        H -1.023565182497721 0.424650328621177 2.420711264474302 
+        H -2.628729735117349 -0.07274320878493121 1.806176036662557 
+        H -0.0156493175698442 1.621207530093904 -2.142094440106367 
+        H 1.062316520999169 0.2121567130332569 -2.128680324335071 
+        H 0.1911967951352214 -2.151661116837683 0.9587581786773094 
+        O -2.543160388795678 1.837930411784989 2.648475655524402 
+        H -2.737558822348033 1.570492034627406 3.559086972544266 
+        O -3.541823655810134 3.152192979059358 0.1724927179007251 
+        H -2.781722860408038 2.595603707684071 0.6449484142804841 
+        H -3.474850040758593 4.112398965053837 0.3213538294258519 
+        H -3.39081387373682 2.890065890392109 -0.7864829171394329 
+    End
+    Charge 1.0
+    BondOrders
+         1 3 2.0
+         2 3 2.0
+         3 4 1.0
+         3 5 1.0
+         4 11 1.0
+         4 14 1.0
+         5 12 1.0
+         5 23 1.0
+         6 7 1.0
+         6 11 1.0
+         6 13 1.0
+         7 8 1.0
+         7 9 2.0
+         7 10 2.0
+         8 12 1.0
+         8 14 1.0
+         11 15 1.0
+         11 16 1.0
+         12 17 1.0
+         12 18 1.0
+         13 19 1.0
+         13 20 1.0
+         13 24 1.0
+         14 21 1.0
+         14 22 1.0
+         24 25 1.0
+         26 27 1.0
+         26 28 1.0
+         26 29 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+EndEngine
+eor
+
+
+########
+#do not change the rest of the file!
+########
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

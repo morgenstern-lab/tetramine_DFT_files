@@ -1,0 +1,139 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETSpCH3O+_GS.TS_search	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='20:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=64        #total number of mpi tasks requested
+		#should be 64 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+########
+
+Task TransitionStateSearch
+Properties
+    NormalModes Yes
+End
+GeometryOptimization
+    InitialHessian
+        Type Calculate
+    End
+End
+TransitionStateSearch
+    ReactionCoordinate
+        Distance 6 13 1.0
+    End
+End
+System
+    Atoms
+        O 2.426390683669626 -0.7511370887781057 -0.2907344001589068 
+        O 1.584938085119283 0.3617331932959112 1.812174432110035 
+        S 1.386595516179319 -0.1368720816071939 0.4814241372191995 
+        N 0.7580346347664133 1.114628047177753 -0.4589994537596621 
+        N 0.02409194177385328 -1.176230113652845 0.5603838263795766 
+        N -1.481806914956406 1.577943003671587 0.4928043801117825 
+        S -2.232287743270708 0.6754970269005821 -0.7683851956900949 
+        N -0.9915470378077709 -0.2104103566631721 -1.429051542896463 
+        O -3.140933604307827 -0.2449084801357329 -0.1133481134021206 
+        O -2.707639798365166 1.599758877394821 -1.756121524556758 
+        C -0.0893593588105937 2.088764386628449 0.1947543329902811 
+        C -0.6069023001024656 -1.454506076851892 -0.762150686835342 
+        C -2.005976050118331 0.3857895275326591 2.574774083624057 
+        C 0.1888914151441938 0.6356290000869055 -1.724816930759889 
+        H 0.3530351094179257 2.382800651859784 1.141505255065205 
+        H -0.1532521972353153 2.960559405306656 -0.4587792131632387 
+        H 0.06652967676715216 -1.973335115005367 -1.446912599392646 
+        H -1.486368360325729 -2.067589969314354 -0.5898774027239907 
+        H -1.554894577886845 1.073175754417082 3.285735972692185 
+        H -1.419828810676556 -0.384511131582961 2.079144924845139 
+        H -0.1062753036837463 1.485510196799213 -2.335675390646505 
+        H 0.917221018616928 0.0384704971842079 -2.266281896223126 
+        H 0.3452977150967257 -2.047781325348788 0.9859064235764416 
+        O -3.274169948780819 0.40871126462771 2.520779909345569 
+        H -3.605114834446795 -0.1690416060069611 1.789055971195357 
+        O -3.097234406496427 3.866410868264187 0.4084078032308779 
+        H -3.498468842583993 4.555491585978793 0.9551795781284437 
+        H -2.101355176021104 2.403361906584204 0.6238103430715261 
+        H -3.564692210775111 3.89484456160175 -0.4392397374250497 
+    End
+    Charge 1.0
+    BondOrders
+         1 3 2.0
+         2 3 2.0
+         3 4 1.0
+         3 5 1.0
+         4 11 1.0
+         4 14 1.0
+         5 12 1.0
+         5 23 1.0
+         6 7 1.0
+         6 11 1.0
+         6 28 1.0
+         7 8 1.0
+         7 9 2.0
+         7 10 2.0
+         8 12 1.0
+         8 14 1.0
+         11 15 1.0
+         11 16 1.0
+         12 17 1.0
+         12 18 1.0
+         13 19 1.0
+         13 20 1.0
+         13 24 1.0
+         14 21 1.0
+         14 22 1.0
+         24 25 1.0
+         26 27 1.0
+         26 29 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+EndEngine
+eor
+
+
+########
+#do not change the rest of the file!
+########
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch
