@@ -1,0 +1,128 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETSHplus_B3LYP_TZP_VGint_gas_sym_IQA	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+UseSymmetry No
+System
+    Atoms
+        O 2.679651473258588 -1.331386998971902 -2.98112585714977e-10 
+        O 2.654176883605082 1.204239050310228 8.419273777667609e-10 
+        S 2.015358816760829 -0.07192748680374504 2.332141164422197e-10 
+        N 0.8789465202906031 -0.08102505375071467 -1.28449410447981 
+        N 0.8789465196241752 -0.08102505393164838 1.284494105166338 
+        N -0.7619889545393608 1.226923963134807 1.247555590402997e-09 
+        S -1.960952677973055 -0.2399443623260933 3.056586743405037e-09 
+        N -0.7750445519541527 -1.365699157202154 -1.61536515442736e-09 
+        O -2.605019110701698 -0.1527187690509115 1.266134925844409 
+        O -2.605019106643731 -0.1527187705721978 -1.266134921883603 
+        C 0.1030275179537244 1.138978980304572 -1.290784342208283 
+        C 0.06103611937272341 -1.308202289486179 1.249591118426564 
+        C 0.1030275180144646 1.138978982254816 1.290784344311766 
+        C 0.06103611947087 -1.308202288710201 -1.249591120336501 
+        H 0.7528331527612241 2.009505279575377 -1.307132878016207 
+        H -0.5841553327311356 1.151777109527399 -2.133353614029902 
+        H 0.7125029329143093 -2.176440685751313 1.248822714724672 
+        H -0.5904624097722637 -1.340114739570514 2.117696620506607 
+        H -0.584155332861208 1.151777114362911 2.133353615905765 
+        H 0.7528331550059698 2.00950527990135 1.307132879455336 
+        H -0.5904624089126139 -1.340114737279905 -2.117696623047055 
+        H 0.712502932303737 -2.176440685508345 -1.248822717058202 
+        H -1.308619775247079 2.094275289544364 -6.747698082989819e-09 
+    End
+    Charge 1.0
+    BondOrders
+         1 3 2.0
+         2 3 2.0
+         3 4 1.0
+         3 5 1.0
+         4 11 1.0
+         4 14 1.0
+         5 12 1.0
+         5 13 1.0
+         6 7 1.0
+         6 11 1.0
+         6 13 1.0
+         6 23 1.0
+         7 8 1.0
+         7 9 2.0
+         7 10 2.0
+         8 12 1.0
+         8 14 1.0
+         11 15 1.0
+         11 16 1.0
+         12 17 1.0
+         12 18 1.0
+         13 19 1.0
+         13 20 1.0
+         14 21 1.0
+         14 22 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    NumericalQuality VeryGood
+    NOSYMFIT
+    IQA
+        Enabled Yes
+        Print Normal
+        AtomsToDo 6 11 
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

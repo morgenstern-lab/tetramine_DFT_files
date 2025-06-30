@@ -1,0 +1,164 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=HEXSHplus_B3LYP_TZP_VGint_KlamtWater_sym_IQA	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+
+
+########
+#do not change the rest of the file!
+########
+
+Task SinglePoint
+System
+    Atoms
+        N -1.406120869480849 -1.451159025033308 0.0 adf.R=1.83
+        C -0.6057383611392955 -1.780567206883318 -1.272408338125285 adf.R=2.00
+        N 0.7411263691401765 -1.295034959591619 -1.202204147734678 adf.R=1.83
+        C 1.463068846969429 -1.718277455390286 0.0 adf.R=2.00
+        N 0.7411263691401765 -1.295034959591619 1.202204147734678 adf.R=1.83
+        C -0.6057383611392955 -1.780567206883318 1.272408338125285 adf.R=2.00
+        N -1.287353918903389 1.390539410393893 0.0 adf.R=1.83
+        C -0.6107103895465813 1.862708351283358 -1.236453408175305 adf.R=2.00
+        N 0.7888314354533819 1.465957102966304 -1.227276139661553 adf.R=1.83
+        C 1.499113614522962 1.870784778005136 0.0 adf.R=2.00
+        N 0.7888314354533819 1.465957102966304 1.227276139661553 adf.R=1.83
+        C -0.6107103895465813 1.862708351283358 1.236453408175305 adf.R=2.00
+        S -2.343071691327649 0.1932641742088768 0.0 adf.R=2.16
+        S 1.2250629566643 0.07609662394042974 -2.038506681701639 adf.R=2.16
+        S 1.2250629566643 0.07609662394042974 2.038506681701639 adf.R=2.16
+        O -2.997347071714754 0.113718535215615 -1.269727215549013 adf.R=1.72
+        O -2.997347071714754 0.113718535215615 1.269727215549013 adf.R=1.72
+        O 0.4553502490176729 0.0724246635221517 -3.253314752820676 adf.R=1.72
+        O 2.661048766267731 0.0438033322600061 -2.007432645706426 adf.R=1.72
+        O 0.4553502490176729 0.0724246635221517 3.253314752820676 adf.R=1.72
+        O 2.661048766267731 0.0438033322600061 2.007432645706426 adf.R=1.72
+        H -1.14395154509881 -1.388510221223614 -2.128236323942608 adf.R=1.30
+        H -0.6022661271844294 -2.868791023239862 -1.316305232156755 adf.R=1.30
+        H 2.473853358729448 -1.330214416261021 0.0 adf.R=1.30
+        H 1.502910062448711 -2.807569606957808 0.0 adf.R=1.30
+        H -1.14395154509881 -1.388510221223614 2.128236323942608 adf.R=1.30
+        H -0.6022661271844294 -2.868791023239862 1.316305232156755 adf.R=1.30
+        H -0.6615016939887441 2.950256099003295 -1.215251440736849 adf.R=1.30
+        H -1.123915453050621 1.501852024668263 -2.119223601187621 adf.R=1.30
+        H 1.535919673862666 2.959445865572098 0.0 adf.R=1.30
+        H 2.511353175929943 1.485249493475948 0.0 adf.R=1.30
+        H -0.6615016939887441 2.950256099003295 1.215251440736849 adf.R=1.30
+        H -1.123915453050621 1.501852024668263 2.119223601187621 adf.R=1.30
+        H -2.201650562391324 -2.099889811855548 0.0 adf.R=1.30
+    End
+    Charge 1.0
+    BondOrders
+         1 2 1.0
+         1 6 1.0
+         1 13 1.0
+         1 34 1.0
+         2 3 1.0
+         2 22 1.0
+         2 23 1.0
+         3 4 1.0
+         3 14 1.0
+         4 5 1.0
+         4 24 1.0
+         4 25 1.0
+         5 6 1.0
+         5 15 1.0
+         6 26 1.0
+         6 27 1.0
+         7 8 1.0
+         7 12 1.0
+         7 13 1.0
+         8 9 1.0
+         8 28 1.0
+         8 29 1.0
+         9 10 1.0
+         9 14 1.0
+         10 11 1.0
+         10 30 1.0
+         10 31 1.0
+         11 12 1.0
+         11 15 1.0
+         12 32 1.0
+         12 33 1.0
+         13 16 2.0
+         13 17 2.0
+         14 18 2.0
+         14 19 2.0
+         15 20 2.0
+         15 21 2.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+    NumericalQuality VeryGood
+    NOSYMFIT
+    IQA
+        Enabled Yes
+        Print Normal
+        AtomsToDo 1 2 6
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

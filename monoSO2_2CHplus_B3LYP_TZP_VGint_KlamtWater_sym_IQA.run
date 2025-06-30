@@ -1,0 +1,147 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=monoSO2_2CHplus_B3LYP_TZP_VGint_KlamtWater_sym_IQA	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+
+
+########
+#do not change the rest of the file!
+########
+
+Task SinglePoint
+System
+    Atoms
+        H -2.065655798840206 -1.178138272281441 0.3514866229947367 adf.R=1.30
+        H -1.315793419443256 -2.038238250305282 -1.011762373272393 adf.R=1.30
+        C 0.02084662592666188 -0.6988524785036945 1.817787853873787 adf.R=2.00
+        N 0.05393800918605703 -1.357457642221933 0.4602546113994753 adf.R=1.83
+        N -0.0576008843040833 1.493133828356342 0.4645441587664168 adf.R=1.83
+        N 1.271336848286055 0.1476862571803968 -1.141495186126929 adf.R=1.83
+        S -0.003899249636698954 0.06799996679522589 -2.242770196267595 adf.R=2.16
+        N -1.279260013175914 0.0457125744072361 -1.13968958366695 adf.R=1.83
+        O -0.05381477397160461 1.303222200194013 -2.973868711297041 adf.R=1.72
+        O 0.04730005484870171 -1.201877202846584 -2.916886604091408 adf.R=1.72
+        C 1.335582356701156 -1.068273033091236 -0.3574767327633351 adf.R=2.00
+        C -1.262704086273935 1.319448304651221 -0.3164847513419539 adf.R=2.00
+        C 1.155168399653295 1.417213282396211 -0.31861698228746 adf.R=2.00
+        C -1.245432119645298 -1.174071895185204 -0.3606094415169889 adf.R=2.00
+        H 2.151098762956298 -1.001236230385866 0.3569891640229853 adf.R=1.30
+        H 1.480371154264848 -1.926276818183319 -1.004629562941171 adf.R=1.30
+        H -2.133400198529655 1.281055044601664 0.3329812700430106 adf.R=1.30
+        H -1.379762322585172 2.135166238235159 -1.024475517861767 adf.R=1.30
+        H 1.206223026873803 2.239465690232395 -1.026926022643898 adf.R=1.30
+        H 2.027555455342814 1.447302329912116 0.3290451254319485 adf.R=1.30
+        C -0.02931124558085284 0.8518826161133689 1.776939910033466 adf.R=2.00
+        H 0.8368772068665079 1.237831115048803 2.310953703621025 adf.R=1.30
+        H -0.9122904538455944 1.180383702312373 2.321951770746456 adf.R=1.30
+        H -0.8509145462689347 -1.111056329452114 2.321216295599168 adf.R=1.30
+        H 0.9084165844627361 -1.051732344874275 2.337871007354476 adf.R=1.30
+        H 0.09512469673226703 -2.360292583105581 0.6536701821919418 adf.R=1.30
+    End
+    Charge 1.0
+    BondOrders
+         1 14 1.0
+         2 14 1.0
+         3 4 1.0
+         3 21 1.0
+         3 24 1.0
+         3 25 1.0
+         4 11 1.0
+         4 14 1.0
+         4 26 1.0
+         5 12 1.0
+         5 13 1.0
+         5 21 1.0
+         6 7 1.0
+         6 11 1.0
+         6 13 1.0
+         7 8 1.0
+         7 9 2.0
+         7 10 2.0
+         8 12 1.0
+         8 14 1.0
+         11 15 1.0
+         11 16 1.0
+         12 17 1.0
+         12 18 1.0
+         13 19 1.0
+         13 20 1.0
+         21 22 1.0
+         21 23 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+    NumericalQuality VeryGood
+    NOSYMFIT
+    IQA
+        Enabled Yes
+        Print Normal
+        AtomsToDo 3 4 11 14 
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch
