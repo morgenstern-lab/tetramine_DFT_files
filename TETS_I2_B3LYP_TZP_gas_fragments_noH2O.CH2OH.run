@@ -1,0 +1,79 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETS_I2_B3LYP_TZP_gas_fragments_noH2O.CH2OH	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        H -1.651217932182335 -0.2845415523251497 1.978741974580565 region=CH2OH
+        H -3.803780456804608 0.3053068367149741 2.121586279270798 region=CH2OH
+        C -1.915697384257077 0.7654043550130412 2.061083471437235 region=CH2OH
+        O -3.22088462003219 1.024932620227915 2.407368175016632 region=CH2OH
+        H -1.253016993407227 1.275676146932815 2.759064061208668 region=CH2OH
+    End
+    Charge 1.0
+    BondOrders
+         3 1 1.0
+         3 4 1.0
+         3 5 1.0
+         4 2 1.0
+    End
+End
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Title CH2OH fragment
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

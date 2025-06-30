@@ -1,0 +1,128 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETS_I2_B3LYP_TZP_KlamtWater_fragments_noH2O.rest_solv	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        O 2.486853417161616 -0.5776209343899069 -0.3964835929291379 region=rest adf.R=1.72
+        O 1.685833907380607 0.2680581974265965 1.820985936287666 region=rest adf.R=1.72
+        S 1.419053075737469 -0.1465016530978862 0.4701028172118945 region=rest adf.R=2.16
+        N 0.6485505040434141 1.122229769672496 -0.3424714959866564 region=rest adf.R=1.83
+        N 0.1450196545131426 -1.222526263418755 0.5103434821141193 region=rest adf.R=1.83
+        N -1.686003266699703 1.403011480560194 0.6237480008755638 region=rest adf.R=1.83
+        S -2.320794546139423 0.3895741672984806 -0.8295627913424681 region=rest adf.R=2.16
+        N -0.9601965480444008 -0.2844111104632553 -1.43032367142703 region=rest adf.R=1.83
+        O -3.163211533743735 -0.6065209954124491 -0.2439961348642644 region=rest adf.R=1.72
+        O -2.781421186348128 1.414760076429544 -1.713071735713073 region=rest adf.R=1.72
+        C -0.2403106983168746 1.968351912080055 0.4002889977401936 region=rest adf.R=2.00
+        C -0.4619823251792831 -1.523678835965281 -0.8067855703378815 region=rest adf.R=2.00
+        H 0.9021337658375896 0.2285198513025892 -2.238322306782602 region=rest adf.R=1.30
+        C 0.1275344189914178 0.7084306740921443 -1.649802345130699 region=rest adf.R=2.00
+        H 0.1549922066277298 2.183634948786329 1.386912969690166 region=rest adf.R=1.30
+        H -0.3847845038799507 2.890770488330729 -0.1534570115652624 region=rest adf.R=1.30
+        H 0.243737955413847 -1.953210336762569 -1.517204332189516 region=rest adf.R=1.30
+        H -1.278756027366309 -2.217421677225548 -0.6434170438017707 region=rest adf.R=1.30
+        H 0.3905329880277314 -2.065576197690109 1.029226428186791 region=rest adf.R=1.30
+        H -2.299774836494033 2.225122789465571 0.5979852207746368 region=rest adf.R=1.30
+        H -0.2491767831876113 1.574694429810078 -2.18470709287801 region=rest adf.R=1.30
+    End
+    Symmetrize Yes
+    BondOrders
+         1 3 2.0
+         2 3 2.0
+         3 4 1.0
+         3 5 1.0
+         4 11 1.0
+         4 14 1.0
+         5 12 1.0
+         5 19 1.0
+         6 7 1.0
+         6 11 1.0
+         6 20 1.0
+         7 8 1.0
+         7 9 2.0
+         7 10 2.0
+         8 12 1.0
+         8 14 1.0
+         11 15 1.0
+         11 16 1.0
+         12 17 1.0
+         12 18 1.0
+         14 13 1.0
+         14 21 1.0
+    End
+End
+Symmetry
+    SymmetrizeTolerance 1.0e-7
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    ALLOW  FRACTIONAL
+    XC
+        Hybrid B3LYP
+    End
+    Title rest fragment
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

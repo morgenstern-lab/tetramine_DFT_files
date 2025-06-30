@@ -1,0 +1,149 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=HEXS_I2_B3LYP_TZP_KlamtWater_solvfragments_noH2O.rest	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        H 1.838406602410005 -1.821970837607729 2.41102560639314 region=rest adf.R=1.350
+        H -0.8835549941494351 2.774572685986898 1.231411245298944 region=rest adf.R=1.350
+        H -1.49131723732055 1.216535206653163 1.817205003447453 region=rest adf.R=1.350
+        H -2.410129541230552 -1.86708364419617 0.1593371193393471 region=rest adf.R=1.350
+        H 2.47142504809548 1.480861592426177 0.3409250406629788 region=rest adf.R=1.350
+        H -0.4158949363678714 2.983748036243595 -1.29872433448242 region=rest adf.R=1.350
+        N -1.690767147073383 -1.185811037775828 -0.07120104874329017 region=rest adf.R=1.608
+        C -0.6491779368772258 -1.741961279462056 -0.9509117657497819 region=rest adf.R=1.700
+        N 0.6734785043413289 -1.202161816162113 -0.6290170862499177 region=rest adf.R=1.608
+        C 1.450826522030281 -1.801186624453163 0.4093581260596785 region=rest adf.R=1.700
+        N 1.04453334075661 -1.468782070044929 1.865352700126611 region=rest adf.R=1.608
+        H -0.7919581416518856 1.575972262577776 -2.305867370650598 region=rest adf.R=1.350
+        N -1.319139589295967 1.408941836384708 -0.2743814204732535 region=rest adf.R=1.608
+        C -0.4291744887696726 1.895696829971691 -1.338613822840768 region=rest adf.R=1.700
+        N 0.9618059556277926 1.454971995469874 -1.13263289041832 region=rest adf.R=1.608
+        C 1.456633925776637 1.822990430107806 0.1852804980004203 region=rest adf.R=1.700
+        N 0.5540379181796943 1.272776580261882 1.234069756844318 region=rest adf.R=1.608
+        C -0.864505175284453 1.696601079012692 1.07576796407848 region=rest adf.R=1.700
+        S -2.443090631237215 0.2289483485338524 -0.5373056917115084 region=rest adf.R=1.792
+        S 1.385379552280235 -0.07536554631455875 -1.659828766198505 region=rest adf.R=1.792
+        S 1.083714207110049 0.3504464990056886 2.416732184547423 region=rest adf.R=1.792
+        O -2.707993698853346 0.2531896845628935 -1.95744572666157 region=rest adf.R=1.517
+        O -3.507721015953595 0.4021630155217454 0.4211658978990266 region=rest adf.R=1.517
+        O 0.7660014634512546 -0.233770698855824 -2.94702345746431 region=rest adf.R=1.517
+        O 2.806600387902264 -0.1799593904858517 -1.456646905582837 region=rest adf.R=1.517
+        O 0.1300369204928951 0.3272715264146335 3.486679971340197 region=rest adf.R=1.517
+        O 2.497990997882191 0.5174029142177684 2.574724968262913 region=rest adf.R=1.517
+        H -0.8565062884603737 -1.562553343573113 -2.001080670927045 region=rest adf.R=1.350
+        H -0.6338559259081056 -2.816586766981181 -0.7856916165449337 region=rest adf.R=1.350
+        H 2.48875610905205 -1.506686624577038 0.3182720137567625 region=rest adf.R=1.350
+        H 1.379883190410867 -2.8860894232807 0.3670358426471537 region=rest adf.R=1.350
+        H 1.425531261600621 2.907745736853277 0.2660353516449179 region=rest adf.R=1.350
+    End
+    Symmetrize Yes
+    BondOrders
+         1 11 1.0
+         2 18 1.0
+         3 18 1.0
+         4 7 1.0
+         7 8 1.0
+         7 19 1.0
+         8 9 1.0
+         8 28 1.0
+         8 29 1.0
+         9 10 1.0
+         9 20 1.0
+         10 11 1.0
+         10 30 1.0
+         10 31 1.0
+         11 21 1.0
+         13 14 1.0
+         13 18 1.0
+         13 19 1.0
+         14 6 1.0
+         14 12 1.0
+         14 15 1.0
+         15 16 1.0
+         15 20 1.0
+         16 5 1.0
+         16 17 1.0
+         16 32 1.0
+         17 18 1.0
+         17 21 1.0
+         19 22 2.0
+         19 23 2.0
+         20 24 2.0
+         20 25 2.0
+         21 26 2.0
+         21 27 2.0
+    End
+End
+Symmetry
+    SymmetrizeTolerance 1.0e-7
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Title rest fragment
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

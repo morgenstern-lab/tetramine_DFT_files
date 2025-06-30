@@ -1,0 +1,128 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETS_I2_B3LYP_TZP_gas_fragments_noH2O	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        O 2.456342216373318 -0.6092644915381612 -0.453626945418845 region=rest adf.f=rest
+        O 1.678457421829688 0.2122229294244577 1.805820397730795 region=rest adf.f=rest
+        S 1.436310983259808 -0.1656736895373171 0.4472350667927383 region=rest adf.f=rest
+        N 0.6642732329454616 1.138761345952693 -0.3319116201499975 region=rest adf.f=rest
+        N 0.1202862745234476 -1.237491592742038 0.4610774498420181 region=rest adf.f=rest
+        N -1.636731665501607 1.422279910791284 0.6826956954284593 region=rest adf.f=rest
+        S -2.307340650512755 0.4330940607579639 -0.8164353302080802 region=rest adf.f=rest
+        N -0.9547630859290477 -0.2294863014756355 -1.455164568405458 region=rest adf.f=rest
+        O -3.134127063940952 -0.5730243895568568 -0.231446613652425 region=rest adf.f=rest
+        O -2.76012670405443 1.504406187550988 -1.641282086741809 region=rest adf.f=rest
+        C -0.1922196121661693 1.978205999995225 0.4471267827483713 region=rest adf.f=rest
+        C -0.4631164073409226 -1.493915426060293 -0.8737191678051871 region=rest adf.f=rest
+        C -1.915697384257077 0.7654043550130412 2.061083471437235 region=CH2OH adf.f=CH2OH
+        C 0.1389322548969887 0.7677399614541488 -1.645099615713116 region=rest adf.f=rest
+        H 0.2397282625963415 2.152470830924225 1.428623421123916 region=rest adf.f=rest
+        H -0.3312000157794846 2.922698133902036 -0.07528032586411849 region=rest adf.f=rest
+        H 0.2552671125956032 -1.893640604145366 -1.591970084797694 region=rest adf.f=rest
+        H -1.287928832711341 -2.190471515562276 -0.7589243549445527 region=rest adf.f=rest
+        H -1.253016993407227 1.275676146932815 2.759064061208668 region=CH2OH adf.f=CH2OH
+        H -1.651217932182335 -0.2845415523251497 1.978741974580565 region=CH2OH adf.f=CH2OH
+        H -0.2429510450796737 1.643877328054989 -2.162779721202869 region=rest adf.f=rest
+        H 0.9175141092106436 0.3032108371393603 -2.243073654864107 region=rest adf.f=rest
+        H 0.390012269264186 -2.097754286013791 0.9389840848357547 region=rest adf.f=rest
+        O -3.22088462003219 1.024932620227915 2.407368175016632 region=CH2OH adf.f=CH2OH
+        H -3.803780456804608 0.3053068367149741 2.121586279270798 region=CH2OH adf.f=CH2OH
+        H -2.265317395370129 2.233792684775171 0.6699378788167442 region=rest adf.f=rest
+    End
+    Charge 1.0
+    BondOrders
+         1 3 2.0
+         2 3 2.0
+         3 4 1.0
+         3 5 1.0
+         4 11 1.0
+         4 14 1.0
+         5 12 1.0
+         5 23 1.0
+         6 7 1.0
+         6 11 1.0
+         6 13 1.0
+         6 26 1.0
+         7 8 1.0
+         7 9 2.0
+         7 10 2.0
+         8 12 1.0
+         8 14 1.0
+         11 15 1.0
+         11 16 1.0
+         12 17 1.0
+         12 18 1.0
+         13 19 1.0
+         13 20 1.0
+         13 24 1.0
+         14 21 1.0
+         14 22 1.0
+         24 25 1.0
+    End
+End
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Fragments
+        CH2OH TETS_I2_B3LYP_TZP_gas_fragments_noH2O.CH2OH.results/adf.rkf 
+        rest TETS_I2_B3LYP_TZP_gas_fragments_noH2O.rest.results/adf.rkf
+    End
+    
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

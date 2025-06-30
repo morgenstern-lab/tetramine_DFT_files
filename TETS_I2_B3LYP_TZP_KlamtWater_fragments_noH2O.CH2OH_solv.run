@@ -1,0 +1,95 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=TETS_I2_B3LYP_TZP_KlamtWater_fragments_noH2O.CH2OH_solv	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        H -1.656575394482266 -0.2764469323228847 1.958309007682418 region=CH2OH adf.R=1.30
+        H -3.819425465846603 0.2222637248491398 2.02896956905645 region=CH2OH adf.R=1.30
+        C -1.958939556697657 0.7643674955047914 2.009400335943068 region=CH2OH adf.R=2.00
+        O -3.282150667596726 0.9663659515975423 2.342993660102655 region=CH2OH adf.R=1.72
+        H -1.329944994021699 1.324601179045626 2.696699551002502 region=CH2OH adf.R=1.30
+    End
+    Symmetrize Yes
+    Charge 1.0
+    BondOrders
+         3 1 1.0
+         3 4 1.0
+         3 5 1.0
+         4 2 1.0
+    End
+End
+Symmetry
+    SymmetrizeTolerance 1.0e-7
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    ALLOW  FRACTIONAL
+    XC
+        Hybrid B3LYP
+    End
+    Title CH2OH fragment
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

@@ -1,0 +1,52 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task SinglePoint
+System
+    Atoms
+        C 1.30194845595676 0.9009403318803495 2.780815714950677 region=CH2OH adf.R=2.00
+        H 3.039213349674311 0.09808825525326523 3.174930637777968 region=CH2OH adf.R=1.30
+        O 2.156708564474011 0.1348165817342948 3.571151524485549 region=CH2OH adf.R=1.72
+        H 1.835328111339921 1.595655988321514 2.139558322033161 region=CH2OH adf.R=1.30
+        H 0.6106154157410817 1.436075530349299 3.427514540789493 region=CH2OH adf.R=1.30
+    End
+    Symmetrize Yes
+    Charge 1.0
+    BondOrders
+         1 3 1.0
+         1 4 1.0
+         1 5 1.0
+         3 2 1.0
+    End
+End
+Symmetry
+    SymmetrizeTolerance 1.0e-7
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    ALLOW  FRACTIONAL
+    XC
+        Hybrid B3LYP
+    End
+    Title CH2OH fragment
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+

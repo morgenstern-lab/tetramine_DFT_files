@@ -1,0 +1,141 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=HEXS_I2_B3LYP_TZP_gas_fragments_noH2O.rest	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        H -0.9758491401147478 2.804253684444286 1.240587065920693 region=rest
+        H -1.548114802986464 1.240425723491152 1.843431156062679 region=rest
+        H -2.44301079969083 -1.914458173204526 0.09480663782838562 region=rest
+        H 1.818603598511728 -1.802261737615326 2.341776225593768 region=rest
+        H 2.401809750197859 1.537305652733795 0.3091545046098668 region=rest
+        H -0.550016760687706 2.984847434196693 -1.32244491478773 region=rest
+        N -1.718369954998064 -1.22273837811007 -0.08759545037850164 region=rest
+        C -0.702064401063613 -1.70786173643482 -1.033801553671072 region=rest
+        N 0.625950370185632 -1.192350229848204 -0.697751690029404 region=rest
+        C 1.393536907185454 -1.800385998567808 0.3310455224893791 region=rest
+        N 1.009133732467335 -1.472238564704742 1.801522760148595 region=rest
+        H -0.9003230238890787 1.540161544222847 -2.284912059246999 region=rest
+        N -1.392532984070608 1.404815363503593 -0.2440595858719687 region=rest
+        C -0.5325070291202636 1.8933691803662 -1.328575406801718 region=rest
+        N 0.8699121520358619 1.490311884068104 -1.131497677630208 region=rest
+        C 1.381827479269793 1.874986666981255 0.1662994536435998 region=rest
+        N 0.5008202884021923 1.340893138895983 1.250198417606145 region=rest
+        C -0.9365178883708827 1.723109389645286 1.088953937834122 region=rest
+        S -2.530424905111845 0.2140998269514988 -0.4846652354571504 region=rest
+        S 1.348422740711624 -0.01262556474522939 -1.699265613861886 region=rest
+        S 1.045093981213252 0.3714396029919257 2.389618749092868 region=rest
+        O -2.829059898219873 0.2516402660278882 -1.887422386721014 region=rest
+        O -3.515552515411245 0.3380968497472188 0.5491885317531466 region=rest
+        O 0.7447183522080275 -0.159471289741735 -2.985680259553036 region=rest
+        O 2.754684478277884 -0.1020533535184319 -1.433575185596383 region=rest
+        O 0.102498558912034 0.3070869823286621 3.465918680011463 region=rest
+        O 2.460334146059869 0.5194464350113301 2.529652865573144 region=rest
+        H -0.9269735954681662 -1.436030906921207 -2.06335357366205 region=rest
+        H -0.6854946699853685 -2.796867219966408 -0.9700984634020196 region=rest
+        H 2.435132114562095 -1.511363858921228 0.2281155491886013 region=rest
+        H 1.315993249537636 -2.889038184091357 0.2863474461512595 region=rest
+        H 1.352184784571558 2.96281143461877 0.2420498134149578 region=rest
+    End
+    Symmetrize Yes
+    BondOrders
+         1 18 1.0
+         2 18 1.0
+         3 7 1.0
+         4 11 1.0
+         7 8 1.0
+         7 19 1.0
+         8 9 1.0
+         8 28 1.0
+         8 29 1.0
+         9 10 1.0
+         9 20 1.0
+         10 11 1.0
+         10 30 1.0
+         10 31 1.0
+         11 21 1.0
+         13 14 1.0
+         13 18 1.0
+         13 19 1.0
+         14 6 1.0
+         14 12 1.0
+         14 15 1.0
+         15 16 1.0
+         15 20 1.0
+         16 5 1.0
+         16 17 1.0
+         16 32 1.0
+         17 18 1.0
+         17 21 1.0
+         19 22 2.0
+         19 23 2.0
+         20 24 2.0
+         20 25 2.0
+         21 26 2.0
+         21 27 2.0
+    End
+End
+Symmetry
+    SymmetrizeTolerance 1.0e-7
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Title rest fragment
+    Relativity
+        Level None
+    End
+    Symmetry NOSYM
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch
