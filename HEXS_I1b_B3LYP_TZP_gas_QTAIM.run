@@ -1,0 +1,156 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=HEXS_I1b_B3LYP_TZP_gas_QTAIM	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+System
+    Atoms
+        H 3.01444868 -0.91392005 2.98133744 
+        O 3.3141422 -1.86075856 3.35099073 
+        H 3.77348889 -1.77405087 4.20364992 
+        H 2.42902457 -2.39902765 3.44523455 
+        O 1.06046698 -3.00428576 3.28929846 
+        H 0.7072079 -3.58696171 3.97991093 
+        N -1.88904537 -1.11038851 -0.24106467 
+        C -0.86831821 -1.6559972 -1.14856962 
+        N 0.48247935 -1.25067466 -0.76264531 
+        C 1.06868759 -1.80160978 0.43369171 
+        N 0.48509788 -1.31226339 1.72206821 
+        C -0.04636991 -2.26851654 2.63340079 
+        N -1.30759976 1.46543973 -0.3316138 
+        C -0.39201108 1.89995338 -1.3921535 
+        N 0.9744736000000001 1.41200563 -1.15795436 
+        C 1.46793606 1.77900866 0.15595596 
+        N 0.53955911 1.32713992 1.22908084 
+        C -0.87035063 1.76056555 1.01847429 
+        S -2.54479527 0.39701692 -0.6191043000000001 
+        S 1.34603625 -0.13907198 -1.69315192 
+        S 0.90762473 0.20115182 2.3155859 
+        O -2.80803462 0.49496009 -2.02874466 
+        O -3.54681126 0.60111113 0.38773143 
+        O 0.81625812 -0.22949946 -3.01908133 
+        O 2.72655089 -0.33986094 -1.35053249 
+        O 0.13696624 0.37990043 3.51075563 
+        O 2.38536806 0.23785756 2.39524757 
+        H -1.0295602 -1.366396 -2.1853251 
+        H -0.9349892400000001 -2.74378705 -1.08811645 
+        H 2.13978296 -1.61969197 0.40227663 
+        H 0.91147444 -2.8816215 0.44624703 
+        H -0.64446514 -1.78034656 3.39573307 
+        H -0.63422024 -3.00308012 2.086133 
+        H -0.34207871 2.99064708 -1.38662605 
+        H -0.75663276 1.56973841 -2.35781813 
+        H 1.50483719 2.86792338 0.20808466 
+        H 2.46016661 1.3807077 0.32618746 
+        H -0.88284025 2.84187381 1.1728119 
+        H -1.52819448 1.2989392 1.74791075 
+        H -2.66859258 -1.74522515 -0.08921192999999999 
+    End
+    Charge 1.0
+    BondOrders
+         1 2 1.0
+         2 3 1.0
+         2 4 1.0
+         5 6 1.0
+         5 12 1.0
+         7 8 1.0
+         7 19 1.0
+         7 40 1.0
+         8 9 1.0
+         8 28 1.0
+         8 29 1.0
+         9 10 1.0
+         9 20 1.0
+         10 11 1.0
+         10 30 1.0
+         10 31 1.0
+         11 12 1.0
+         11 21 1.0
+         12 32 1.0
+         12 33 1.0
+         13 14 1.0
+         13 18 1.0
+         13 19 1.0
+         14 15 1.0
+         14 34 1.0
+         14 35 1.0
+         15 16 1.0
+         15 20 1.0
+         16 17 1.0
+         16 36 1.0
+         16 37 1.0
+         17 18 1.0
+         17 21 1.0
+         18 38 1.0
+         18 39 1.0
+         19 22 2.0
+         19 23 2.0
+         20 24 2.0
+         20 25 2.0
+         21 26 2.0
+         21 27 2.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    QTAIM
+        Enabled Yes
+        AnalysisLevel Full
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch
