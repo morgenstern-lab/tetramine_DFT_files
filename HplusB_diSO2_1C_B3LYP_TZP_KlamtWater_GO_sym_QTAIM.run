@@ -1,0 +1,157 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=HplusB_diSO2_1C_B3LYP_TZP_KlamtWater_GO_sym_QTAIM	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='24:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 128 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+#SBATCH --exclude=c004
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task GeometryOptimization
+Properties
+    PESPointCharacter Yes
+End
+System
+    Atoms
+        N -1.22846631 0.00930459 1.37315644 adf.R=1.83
+        C -1.67484666 1.20494924 0.69694692 adf.R=2.00
+        N -1.28614238 1.2944739 -0.75888529 adf.R=1.83
+        C -1.74600788 0.00930459 -1.44369272 adf.R=2.00
+        N -1.32609638 -1.22033341 -0.7540462999999999 adf.R=1.83
+        C -1.67484666 -1.18634006 0.69694692 adf.R=2.00
+        N 1.34345316 0.00930459 1.37315644 adf.R=1.83
+        C 1.7898335 1.20494924 0.69694692 adf.R=2.00
+        N 1.44108323 1.23894259 -0.7540462999999999 adf.R=1.83
+        C 1.86099473 0.00930459 -1.44369272 adf.R=2.00
+        N 1.44108323 -1.22033341 -0.7540462999999999 adf.R=1.83
+        C 1.7898335 -1.18634006 0.69694692 adf.R=2.00
+        C 0.05749342 0.00930459 2.07440181 adf.R=2.00
+        S 0.05749342 2.0144665 -1.23795253 adf.R=2.16
+        S 0.05749342 -1.99585732 -1.23795253 adf.R=2.16
+        H 2.88112242 -1.22276359 0.72383177 adf.R=1.30
+        H 1.40281639 -2.07820692 1.17988045 adf.R=1.30
+        O 0.05749342 3.2778801 -0.5334057800000001 adf.R=1.72
+        O 0.05749342 1.96460473 -2.68391991 adf.R=1.72
+        O 0.05749342 -3.25927092 -0.5334057800000001 adf.R=1.72
+        O 0.05749342 -1.94599555 -2.68391991 adf.R=1.72
+        H -1.28782954 2.0968161 1.17988045 adf.R=1.30
+        H -2.76613558 1.24137277 0.72383177 adf.R=1.30
+        H -1.398802 0.00930459 -2.46981469 adf.R=1.30
+        H -2.83660435 0.00930459 -1.44276434 adf.R=1.30
+        H -1.28782954 -2.07820692 1.17988045 adf.R=1.30
+        H -2.76613558 -1.22276359 0.72383177 adf.R=1.30
+        H 2.88112242 1.24137277 0.72383177 adf.R=1.30
+        H 1.40281639 2.0968161 1.17988045 adf.R=1.30
+        H 2.9515912 0.00930459 -1.44276434 adf.R=1.30
+        H 1.51378884 0.00930459 -2.46981469 adf.R=1.30
+        H 0.05749342 -0.87215484 2.71581314 adf.R=1.30
+        H 0.05749342 0.89076402 2.71581314 adf.R=1.30
+        H -1.93723698 -0.3625828 1.98914663 adf.R=1.30
+    End
+    Charge 1.0
+    BondOrders
+         1 2 1.0
+         1 6 1.0
+         1 13 1.0
+         2 3 1.0
+         2 22 1.0
+         2 23 1.0
+         3 4 1.0
+         3 14 1.0
+         4 5 1.0
+         4 24 1.0
+         4 25 1.0
+         5 6 1.0
+         5 15 1.0
+         6 26 1.0
+         6 27 1.0
+         7 8 1.0
+         7 12 1.0
+         7 13 1.0
+         8 9 1.0
+         8 28 1.0
+         8 29 1.0
+         9 10 1.0
+         9 14 1.0
+         10 11 1.0
+         10 30 1.0
+         10 31 1.0
+         11 12 1.0
+         11 15 1.0
+         12 16 1.0
+         12 17 1.0
+         13 32 1.0
+         13 33 1.0
+         14 18 2.0
+         14 19 2.0
+         15 20 2.0
+         15 21 2.0
+         34 1 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    Save TAPE10
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+    QTAIM
+        Enabled Yes
+        AnalysisLevel Full
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch
