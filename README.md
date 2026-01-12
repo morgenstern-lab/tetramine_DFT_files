@@ -7,3 +7,4 @@ All calculations used Amsterdam Modeling Suite. Some run files include a header 
 3. Reactant Molecule Stability - QTAIM, IQA, and fragment energy calculations for 7 heteroadamantanes
 4. Intermediate 1 Stability - QTAIM calculations for HMT, TETS, and HEXS
 5. Intermediate 2 Stability - QTAIM, IQA, and fragment energy calculations for HMT, TETS, and HEXS
+6. TS Single Points 300 deg C Kinetics - SP calculations performed at 300 deg C for reactants, intermediates, products, and TSs for HMT, TETS, and HEXS in the condensed phase
