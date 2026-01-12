@@ -1,0 +1,140 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=HMTCNp+_AlliH2O_TS_search2_300C	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='23:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 64 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+Properties
+    NormalModes Yes
+End
+Thermo
+    Temperatures 573.15
+End
+System
+    Atoms
+        N 0.7994393721283041 -0.7113549672290789 -0.9681673091167841 adf.R=1.608
+        N 0.6375248549463657 -0.287882404780544 1.431486012233591 adf.R=1.608
+        N 1.229233640327052 1.59828775708036 -0.405992063876815 adf.R=1.608
+        N -0.9854321149523871 0.6798634583693119 -0.1173204176837617 adf.R=1.608
+        C 1.045085517197121 -1.248752403233476 0.3838749046590803 adf.R=1.7
+        C 1.863926581418951 1.737492549473007 0.702739890332444 adf.R=1.7
+        C 1.602754374863823 0.4502952454562443 -1.302734640781123 adf.R=1.7
+        C -0.6273715240449129 -0.3677351619211765 -1.087929095000724 adf.R=1.7
+        C -0.7596289729504624 0.1612129623255019 1.244822638437492 adf.R=1.7
+        C -0.2455240815763824 1.889952406648719 -0.4237053910243701 adf.R=1.7
+        H 0.4876785860764747 -2.189716746784721 0.4569462887358174 adf.R=1.35
+        H 2.105942051341732 -1.467768243943101 0.5001107414277185 adf.R=1.35
+        H 2.854655158037536 1.320021480282797 0.8151384979326352 adf.R=1.35
+        H 1.471249709262441 2.390903810332301 1.469266788911713 adf.R=1.35
+        H 2.662529925489879 0.2508322174111139 -1.170530788158963 adf.R=1.35
+        H 1.404622740417841 0.7525147824279704 -2.328043762276154 adf.R=1.35
+        H -1.225637939506045 -1.255733240485713 -0.8894603242288928 adf.R=1.35
+        H -0.8336446008022828 -0.0145960649327184 -2.097250785999493 adf.R=1.35
+        H -0.9774890630605926 0.9439158705958441 1.97115106211701 adf.R=1.35
+        H -1.47316495529586 -0.6572018877748287 1.394883019214096 adf.R=1.35
+        H -0.4428973060217943 2.670808231110274 0.3055588613346025 adf.R=1.35
+        H -0.5037528867243803 2.236924784263097 -1.420995823931313 adf.R=1.35
+        H 0.7504977129717277 -0.699506394989406 2.359885396334624 adf.R=1.35
+        O 0.6319330898145475 -1.344605304319918 4.297594517442318 adf.R=1.517
+        H 1.49607295570193 -1.597172329523717 4.652509763063725 adf.R=1.35
+        H -0.3208850368103999 1.315448607199353 5.944340188344409 adf.R=1.35
+        O 0.00732830808490792 1.256445676223685 5.034599081951638 adf.R=1.517
+        H 0.7676975942925334 1.856636555228428 5.018861715355794 adf.R=1.35
+        H 0.4708526543142043 -0.4380867519728642 4.643389634057579 adf.R=1.35
+    End
+    Charge 1.0
+    BondOrders
+         1 5 1.0
+         1 7 1.0
+         1 8 1.0
+         2 5 1.0
+         2 9 1.0
+         2 23 1.0
+         3 6 1.0
+         3 7 1.0
+         3 10 1.0
+         4 8 1.0
+         4 9 1.0
+         4 10 1.0
+         5 11 1.0
+         5 12 1.0
+         6 13 1.0
+         6 14 1.0
+         7 15 1.0
+         7 16 1.0
+         8 17 1.0
+         8 18 1.0
+         9 19 1.0
+         9 20 1.0
+         10 21 1.0
+         10 22 1.0
+         24 25 1.0
+         24 29 1.0
+         26 27 1.0
+         27 28 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch

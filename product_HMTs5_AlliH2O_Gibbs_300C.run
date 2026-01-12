@@ -1,0 +1,124 @@
+#!/bin/bash
+
+##########
+#update the variables below as needed
+##########
+
+JOB=HMTs5_AlliH2O_Gibbs_300C	#this is the name of your job
+		#make sure there are no spaces in the name
+CURDIR=`'pwd'`  #do not change this line
+TIME='23:00:00' #run time (hh:mm:ss) - 2 hours
+NODES=1		#total number of nodes
+TASKS=128        #total number of mpi tasks requested
+		#should be 64 tasks per node
+
+#########
+#Do not change this next section!
+#########
+cat > $JOB.sbatch << EOF_ALL
+#!/bin/sh
+
+#SBATCH -J $JOB  	         # job name
+#SBATCH -o $CURDIR/$JOB.out
+#SBATCH -e $CURDIR/$JOB.err
+#SBATCH -N $NODES                # total number of nodes 
+#SBATCH -n $TASKS                # total number of mpi tasks requested
+#SBATCH -t $TIME                 # run time (hh:mm:ss) - 1.5 hours
+
+#!/bin/sh
+
+AMS_JOBNAME=$JOB $AMSBIN/ams << eor
+
+########
+#replace the lines below with your adf input file
+#starting with the "Task"
+########
+
+Task SinglePoint
+Properties
+    NormalModes Yes
+End
+Thermo
+    Temperatures 573.15
+End
+System
+    Atoms
+        N 0.700405693087535 -0.9699813614587406 -0.7077358756792569 adf.R=1.608
+        N -1.43580770556558 -1.466529743486586 0.4822275195280733 adf.R=1.608
+        N 0.4475811778002572 0.5361139501512372 1.273109886933864 adf.R=1.608
+        N -1.073351065985751 0.6970578662134953 -0.7061868410676333 adf.R=1.608
+        C -0.2582440804036614 -1.987740035560665 -0.2451247560559566 adf.R=1.700
+        H -1.12264974441288 1.893209407365785 1.033866697896886 adf.R=1.350
+        C 1.343517131725266 -0.2125553996717651 0.4372579074386304 adf.R=1.700
+        C -0.0433076922893509 0.01662411103918299 -1.504584162641977 adf.R=1.700
+        C -2.029488105806625 -0.32296170747683 -0.2438092344078717 adf.R=1.700
+        C -0.3560229971198597 1.384758456456929 0.4391314573634811 adf.R=1.700
+        H -0.6068533942602629 -2.540084467552899 -1.124168683572873 adf.R=1.350
+        H 0.2608957995545405 -2.689104241577983 0.4109869705345658 adf.R=1.350
+        H 0.2281651863396306 2.178157106040972 -0.08407031309078121 adf.R=1.350
+        H -1.027990457614423 -1.033400798390177 1.314912927512215 adf.R=1.350
+        H 1.898886273820638 -0.9471927439463559 1.030398762606676 adf.R=1.350
+        H 2.098678568838293 0.4204192287437952 -0.08570616366247512 adf.R=1.350
+        H -0.5122670438386269 -0.4819149533648991 -2.358842046953975 adf.R=1.350
+        H 0.6583956600983545 0.7637199910151903 -1.88406789127818 adf.R=1.350
+        H -2.761187114229505 0.1515508838737598 0.4129987021307986 adf.R=1.350
+        H -2.559878942627326 -0.7042831484890889 -1.122785835089955 adf.R=1.350
+    End
+    Charge -1.0
+    BondOrders
+         1 5 1.0
+         1 7 1.0
+         1 8 1.0
+         2 5 1.0
+         2 9 1.0
+         2 14 1.0
+         3 7 1.0
+         3 10 1.0
+         4 8 1.0
+         4 9 1.0
+         4 10 1.0
+         5 11 1.0
+         5 12 1.0
+         6 10 1.0
+         7 15 1.0
+         7 16 1.0
+         8 17 1.0
+         8 18 1.0
+         9 19 1.0
+         9 20 1.0
+         10 13 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZP
+        Core None
+    End
+    XC
+        Hybrid B3LYP
+    End
+    Relativity
+        Level None
+    End
+    Solvation
+        Surf Delley
+        Solv name=Water cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+
+########
+#do not change the rest of the file!
+########
+
+mv $JOB.results/ams.log $JOB.logfile
+rm slurm-*.out
+
+EOF_ALL
+
+sbatch < $JOB.sbatch
