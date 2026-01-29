@@ -1,0 +1,1378 @@
+
+
+ Parallel Execution: Process Information
+ ==============================================================================
+ Rank   Node Name                              NodeID   MyNodeRank  NodeMaster
+    0   c014                                      0          0          0
+    1   c014                                      1          0          1
+    2   c014                                      0          1         -1
+    3   c014                                      1          1         -1
+    4   c014                                      0          2         -1
+    5   c014                                      1          2         -1
+    6   c014                                      0          3         -1
+    7   c014                                      1          3         -1
+    8   c014                                      0          4         -1
+    9   c014                                      1          4         -1
+   10   c014                                      0          5         -1
+   11   c014                                      1          5         -1
+   12   c014                                      0          6         -1
+   13   c014                                      1          6         -1
+   14   c014                                      0          7         -1
+   15   c014                                      1          7         -1
+   16   c014                                      0          8         -1
+   17   c014                                      1          8         -1
+   18   c014                                      0          9         -1
+   19   c014                                      1          9         -1
+   20   c014                                      0         10         -1
+   21   c014                                      1         10         -1
+   22   c014                                      0         11         -1
+   23   c014                                      1         11         -1
+   24   c014                                      0         12         -1
+   25   c014                                      1         12         -1
+   26   c014                                      0         13         -1
+   27   c014                                      1         13         -1
+   28   c014                                      0         14         -1
+   29   c014                                      1         14         -1
+   30   c014                                      0         15         -1
+   31   c014                                      1         15         -1
+   32   c014                                      2          0          2
+   33   c014                                      3          0          3
+   34   c014                                      2          1         -1
+   35   c014                                      3          1         -1
+   36   c014                                      2          2         -1
+   37   c014                                      3          2         -1
+   38   c014                                      2          3         -1
+   39   c014                                      3          3         -1
+   40   c014                                      2          4         -1
+   41   c014                                      3          4         -1
+   42   c014                                      2          5         -1
+   43   c014                                      3          5         -1
+   44   c014                                      2          6         -1
+   45   c014                                      3          6         -1
+   46   c014                                      2          7         -1
+   47   c014                                      3          7         -1
+   48   c014                                      2          8         -1
+   49   c014                                      3          8         -1
+   50   c014                                      2          9         -1
+   51   c014                                      3          9         -1
+   52   c014                                      2         10         -1
+   53   c014                                      3         10         -1
+   54   c014                                      2         11         -1
+   55   c014                                      3         11         -1
+   56   c014                                      2         12         -1
+   57   c014                                      3         12         -1
+   58   c014                                      2         13         -1
+   59   c014                                      3         13         -1
+   60   c014                                      2         14         -1
+   61   c014                                      3         14         -1
+   62   c014                                      2         15         -1
+   63   c014                                      3         15         -1
+   64   c014                                      4          0          4
+   65   c014                                      5          0          5
+   66   c014                                      4          1         -1
+   67   c014                                      5          1         -1
+   68   c014                                      4          2         -1
+   69   c014                                      5          2         -1
+   70   c014                                      4          3         -1
+   71   c014                                      5          3         -1
+   72   c014                                      4          4         -1
+   73   c014                                      5          4         -1
+   74   c014                                      4          5         -1
+   75   c014                                      5          5         -1
+   76   c014                                      4          6         -1
+   77   c014                                      5          6         -1
+   78   c014                                      4          7         -1
+   79   c014                                      5          7         -1
+   80   c014                                      4          8         -1
+   81   c014                                      5          8         -1
+   82   c014                                      4          9         -1
+   83   c014                                      5          9         -1
+   84   c014                                      4         10         -1
+   85   c014                                      5         10         -1
+   86   c014                                      4         11         -1
+   87   c014                                      5         11         -1
+   88   c014                                      4         12         -1
+   89   c014                                      5         12         -1
+   90   c014                                      4         13         -1
+   91   c014                                      5         13         -1
+   92   c014                                      4         14         -1
+   93   c014                                      5         14         -1
+   94   c014                                      4         15         -1
+   95   c014                                      5         15         -1
+   96   c014                                      6          0          6
+   97   c014                                      7          0          7
+   98   c014                                      6          1         -1
+   99   c014                                      7          1         -1
+  100   c014                                      6          2         -1
+  101   c014                                      7          2         -1
+  102   c014                                      6          3         -1
+  103   c014                                      7          3         -1
+  104   c014                                      6          4         -1
+  105   c014                                      7          4         -1
+  106   c014                                      6          5         -1
+  107   c014                                      7          5         -1
+  108   c014                                      6          6         -1
+  109   c014                                      7          6         -1
+  110   c014                                      6          7         -1
+  111   c014                                      7          7         -1
+  112   c014                                      6          8         -1
+  113   c014                                      7          8         -1
+  114   c014                                      6          9         -1
+  115   c014                                      7          9         -1
+  116   c014                                      6         10         -1
+  117   c014                                      7         10         -1
+  118   c014                                      6         11         -1
+  119   c014                                      7         11         -1
+  120   c014                                      6         12         -1
+  121   c014                                      7         12         -1
+  122   c014                                      6         13         -1
+  123   c014                                      7         13         -1
+  124   c014                                      6         14         -1
+  125   c014                                      7         14         -1
+  126   c014                                      6         15         -1
+  127   c014                                      7         15         -1
+ ==============================================================================
+
+
+May use up to 14980MB of RAM as shared memory on node 0
+May use up to 15377MB of RAM as shared memory on node 1
+May use up to 15377MB of RAM as shared memory on node 2
+May use up to 15377MB of RAM as shared memory on node 3
+May use up to 15359MB of RAM as shared memory on node 4
+May use up to 15377MB of RAM as shared memory on node 5
+May use up to 15372MB of RAM as shared memory on node 6
+May use up to 15377MB of RAM as shared memory on node 7
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2023.104                      *
+ *  --------------------------------                                           *
+ *                                               r115785 2023-10-06            *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ **********************  x86_64_linux_intel / intelmpi  ************************
+ 
+ Licensed to: Dr. Amanda Morgenstern / University of Colorado / Colorado Springs / Colorado / USA 2024-12-20 19:21:38
+ SCM User ID: u21568
+  
+ AMS 2023.104  RunTime: Dec16-2025 11:35:26  ShM Nodes: 8  Procs: 128
+
+ AMS jobname: monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC_minus1.CH2
+ AMS jobid  : 904110620
+
+ Start   directory: /home/amorgens/adf_calcs/tetramine/final_ams_calcs/fragments/
+ Results directory: /home/amorgens/adf_calcs/tetramine/final_ams_calcs/fragments/monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC_minus1.CH2.results/
+ Scratch directory: /tmp/amstmp_monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC_minus1.CH2_kid0.904110620/
+
+
+ Communication costs MPI_COMM_WORLD:      4.459 usec per message,   0.0444 usec per 8-byte item
+ Communication costs for intra-node:      1.651 usec per message,   0.0065 usec per 8-byte item
+
+ RNG seed: 1005787752 -1833651528 -1138178394 1934122605 -1284390827 -2067636164 688492347 2144736077
+
+
+
+                     **************************************************************************
+                     *  ADF 2023.104  RunTime: Dec16-2025 11:35:27  ShM Nodes: 8  Procs: 128  *
+                     **************************************************************************
+  
+ Geometry symmetrized to: Csv
+ Geometry reoriented with symmetry: C(2V)
+
+       ****************************
+       * SINGLE POINT CALCULATION *
+       ****************************
+ 
+--------
+Geometry
+--------
+Formula: CH2
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      H     0.89254871     0.00000000    -2.29152544       region=CH2 adf.R=1.30
+      2      H    -0.89254871     0.00000000    -2.29152544       region=CH2 adf.R=1.30
+      3      C     0.00000000     0.00000000    -1.67216180       region=CH2 adf.R=2.00
+ 
+Total System Charge             2.00000
+Bonding info available!
+ 
+ 
+----------------
+ADF Engine Input
+----------------
+ 
+ Basis
+ Type TZP
+ Core None
+ End
+ XC
+ Hybrid B3LYP
+ End
+ Title CH2 fragment
+ Relativity
+ Level None
+ End
+ Symmetry NOSYM
+ Solvation
+ Surf Delley
+ Solv name=Water cav0=0.0 cav1=0.0067639
+ Charged method=CONJ
+ C-Mat POT
+ SCF VAR ALL
+ CSMRSP
+ End
+ 
+
+ Title: CH2 fragment
+
+ *** adf ***
+
+
+
+ ===========================
+ A T T A C H E D   F I L E S
+ ===========================
+  
+
+
+
+ ===============================
+ M O D E L   P A R A M E T E R S
+ ===============================
+  
+ DENSITY FUNCTIONAL POTENTIAL (scf)
+    Hybrid:                            B3LYP                                   == Not Default ==
+
+ SPIN  (restricted / unrestr.)
+    Molecule:                          Restricted                               
+    Fragments:                         Restricted                               
+
+ OTHER ASPECTS
+    Relativistic Corrections:          ---                                     == Not Default ==
+
+    Nuclear Charge Density Model:      Point Charge Nuclei                      
+    Core Treatment:                    Frozen Orbital(s)                        
+
+    Hyperfine or Zeeman Interaction:   ---                                      
+
+ SOLVATION
+-------------------------------------------
+
+  The Delley construction of COSMO surface surface is calculated
+
+       Division Level for Surface Triangles (NDIV)                  3
+       Final Division Level for Triangles (NFDIV)                   1
+       Radius of the Solvent (RSOL)                           1.93000 angstr
+  Dielectric Constant (EPSL)                                 78.39000
+
+       COSMO equation is solved iteratively-               conjugate-gradient
+
+       Maximun of Iterations for Charges (NCIX)                  1000
+       Criterion for Charge convergence (CCNV)                1.0E-08
+
+  COSMO charges included variationally in SCF
+
+       COSMO included at every SCF cycle
+
+  Geometry-dependent empirical factor                         0.00000
+
+  C-Matrix calculated in cspmtx
+
+  In cspmtx, C-Matrix calculated using fitted potential
+
+-------------------------------------------
+
+
+
+ Fragment File(s)
+ ----------------
+ H:
+         file : /home/amorgens/adf_calcs/tetramine/final_ams_calcs/fragments/monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC_minus1.CH2.results/t21.3526984.H
+         jobid: 0
+         title: Hydrogen (TZP)
+ C:
+         file : /home/amorgens/adf_calcs/tetramine/final_ams_calcs/fragments/monoSO2_1CHplus_B3LYP_TZP_KlamtWater_solvfrag_towardC_minus1.CH2.results/t21.28079B0C.C
+         jobid: 0
+         title: Carbon (TZP)
+
+
+
+ ===============
+ G E O M E T R Y  ***  Planar Molecule  ***
+ ===============
+  
+
+ ATOMS
+ =====                            X Y Z                    CHARGE                     RADIUS
+                                (Angstrom)             Nucl     +Core       At.Mass (Angstrom)
+                       --------------------------    ----------------       ------- ----------
+    1  H               0.8925    0.0000   -2.2915      1.00      1.00        1.0078    1.3000
+    2  H              -0.8925    0.0000   -2.2915      1.00      1.00        1.0078    1.3000
+    3  C               0.0000    0.0000   -1.6722      6.00      6.00       12.0000    2.0000
+
+
+ FRAGMENTS
+ =========                                     Atoms in this Fragment     Cart. coord.s (Angstrom)
+                                               -------------------------------------------------------
+    1  H                                                 1  H            0.8925    0.0000   -2.2915
+    2  H                                                 2  H           -0.8925    0.0000   -2.2915
+    3  C                                                 3  C            0.0000    0.0000   -1.6722
+
+
+ Interatomic Distance Matrix (Angstrom)
+ --------------------------------------
+
+   1)     0.000
+   2)     1.785   0.000
+   3)     1.086   1.086   0.000
+
+ Min. Distance =    1.0864
+ Max. Distance =    1.7851
+
+
+
+ =====================================
+ S Y M M E T R Y ,   E L E C T R O N S
+ =====================================
+  
+ Symmetry: NOSYM
+
+ Irreducible Representations, including subspecies
+ -------------------------------------------------
+ A
+
+ Symmetry is NOT used when fitting density
+
+
+ Configuration of Valence Electrons
+ ==================================
+ ( determined in the SCF procedure )
+
+ Total:   6
+
+ Net Charge: 2 (Nuclei minus Electrons)
+
+ Aufbau principle for MO occupations will be applied through SCF cycle no.     150
+ Thereafter, the program will assign electrons to MOs that are spatially
+ similar to the occupied MOs in a "reference" cycle ("KeepOrbitals").
+ The reference cycle is always the PREVIOUS cycle: it will evolve with
+ the SCF procedure.
+1
+ ***************************************************************************************************
+
+
+
+                                      ****************************************
+                                      *  B U I L D : (Fragments, Functions)  *
+                                      ****************************************
+  
+
+
+
+ =======
+ S F O s  ***  (Symmetrized Fragment Orbitals)  ***
+ =======
+  
+ SFOs are linear combinations of (valence) Fragment Orbitals (FOs), such that the SFOs transform as the
+ irreducible representations of the (molecular) symmetry group. Each SFO is therefore characterized by
+ an irrep of the molecule and by a few (or only one) generating FOs.
+ The SFOs constitute a symmetry-adapted basis for the Fock matrix. The MO eigenvector coefficients in
+ this basis provide a direct interpretation of the MOs in terms of Frontier Orbital Theory.
+
+ The SFOs are combined with auxiliary Core Functions (CFs) to ensure orthogonalization on the (frozen)
+ Core Orbitals (COs). The Core-orthogonalized SFOs (CSFOs) constitute the true Fock basis.
+
+ The FOs, and hence also the (C)SFOs are combinations of the elementary basis functions (BAS). The basis
+ functions that participate in the description of the SFOs depend on the irrep. The indices of the
+ involved functions are printed below for each irrep.
+ (The complete list of primitive basis functions is printed in another section)
+
+ Total nr. of (C)SFOs (summation over all irreps) :    31
+
+ NOTE: a (C)SFO that is defined as a combination of more than one FO is usually NOT normalized.
+
+
+
+                                       === A ===
+ Nr. of SFOs :   31
+ Cartesian basis functions that participate in this irrep (total number =    32) :
+      1     2     3     4     5     6     7     8     9    10
+     11    12    13    14    15    16    17    18    21    24
+     19    22    25    20    23    26    27    28    29    30
+     31    32
+
+    SFO  (index         Fragment          Generating    Expansion in Fragment Orbitals
+  indx  incl.CFs)   Occup   Orb.Energy   FragmentType  Coeff.   Orbital     on Fragment
+ --------------------------------------------------------------------------------------
+     1       1      1.000      -0.244 au  H             1.00      1 S               1
+                        (      -6.641 eV)
+     2       2       --         0.104 au  H             1.00      2 S               1
+                        (       2.836 eV)
+     3       3       --         1.564 au  H             1.00      3 S               1
+                        (      42.568 eV)
+     4       4       --         0.436 au  H             1.00      1 P:x             1
+                        (      11.865 eV)
+     5       5       --         0.436 au  H             1.00      1 P:y             1
+                        (      11.865 eV)
+     6       6       --         0.436 au  H             1.00      1 P:z             1
+                        (      11.865 eV)
+     7       7      1.000      -0.244 au  H             1.00      1 S               2
+                        (      -6.641 eV)
+     8       8       --         0.104 au  H             1.00      2 S               2
+                        (       2.836 eV)
+     9       9       --         1.564 au  H             1.00      3 S               2
+                        (      42.568 eV)
+    10      10       --         0.436 au  H             1.00      1 P:x             2
+                        (      11.865 eV)
+    11      11       --         0.436 au  H             1.00      1 P:y             2
+                        (      11.865 eV)
+    12      12       --         0.436 au  H             1.00      1 P:z             2
+                        (      11.865 eV)
+    13      13      2.000     -10.347 au  C             1.00      1 S               3
+                        (    -281.544 eV)
+    14      14      2.000      -0.564 au  C             1.00      2 S               3
+                        (     -15.345 eV)
+    15      15       --         0.402 au  C             1.00      3 S               3
+                        (      10.943 eV)
+    16      16       --         5.509 au  C             1.00      4 S               3
+                        (     149.900 eV)
+    17      17       --        50.546 au  C             1.00      5 S               3
+                        (    1375.414 eV)
+    18      18      0.667      -0.188 au  C             1.00      1 P:x             3
+                        (      -5.110 eV)
+    19      19       --         0.191 au  C             1.00      2 P:x             3
+                        (       5.204 eV)
+    20      20       --         2.089 au  C             1.00      3 P:x             3
+                        (      56.851 eV)
+    21      21      0.667      -0.188 au  C             1.00      1 P:y             3
+                        (      -5.110 eV)
+    22      22       --         0.191 au  C             1.00      2 P:y             3
+                        (       5.204 eV)
+    23      23       --         2.089 au  C             1.00      3 P:y             3
+                        (      56.851 eV)
+    24      24      0.667      -0.188 au  C             1.00      1 P:z             3
+                        (      -5.110 eV)
+    25      25       --         0.191 au  C             1.00      2 P:z             3
+                        (       5.204 eV)
+    26      26       --         2.089 au  C             1.00      3 P:z             3
+                        (      56.851 eV)
+    27      27       --         1.292 au  C             1.00      1 D:z2            3
+                        (      35.150 eV)
+    28      28       --         1.292 au  C             1.00      1 D:x2-y2         3
+                        (      35.150 eV)
+    29      29       --         1.292 au  C             1.00      1 D:xy            3
+                        (      35.150 eV)
+    30      30       --         1.292 au  C             1.00      1 D:xz            3
+                        (      35.150 eV)
+    31      31       --         1.292 au  C             1.00      1 D:yz            3
+                        (      35.150 eV)
+
+
+
+ ================================
+ (Slater-type)  F U N C T I O N S  ***  (Basis and Fit)  ***
+ ================================
+  
+
+ Atom Type    1  (H)
+ ==============
+
+ Valence Basis Sets:   4
+ -----------------------
+   1 S    0.690000
+   1 S    0.920000
+   1 S    1.580000
+   2 P    1.250000
+
+ Charge Fitting Sets (for the computation of the Coulomb Potential):  11
+ -----------------------------------------------------------------------
+   1 S    3.160000
+   1 S    2.090000
+   1 S    1.380000
+   2 S    1.500000
+   2 P    4.000000
+   2 P    2.650000
+   2 P    1.750000
+   3 D    4.000000
+   3 D    2.500000
+   4 F    3.000000
+   5 G    4.000000
+
+ Atom Type    2  (C)
+ ==============
+
+ Valence Basis Sets:   9
+ -----------------------
+   1 S    7.680000
+   1 S    5.000000
+   2 S    1.280000
+   2 S    2.100000
+   2 S    4.600000
+   2 P    0.820000
+   2 P    1.480000
+   2 P    2.940000
+   3 D    2.200000
+
+ Charge Fitting Sets (for the computation of the Coulomb Potential):  22
+ -----------------------------------------------------------------------
+   1 S   15.360000
+   2 S   17.530000
+   2 S   12.070000
+   2 S    8.310000
+   2 S    5.730000
+   3 S    5.780000
+   3 S    4.220000
+   3 S    3.080000
+   3 S    2.250000
+   3 S    1.640000
+   2 P    9.880000
+   2 P    5.800000
+   3 P    5.050000
+   3 P    3.230000
+   3 P    2.060000
+   3 D    7.200000
+   3 D    4.400000
+   3 D    2.690000
+   3 D    1.640000
+   4 F    5.400000
+   4 F    3.550000
+   5 G    4.500000
+
+
+ BAS: List of all Elementary Cartesian Basis Functions
+ =====================================================
+
+ The numbering in the list below (to the right of the function characteristics) is referred
+ to in print-outs of MO eigenvectors and Mulliken populations in the BAS representation
+ (as contrasted to the SFO representation).
+
+ Notes:
+ 1. The functions are characterized by a polynomial prefactor (powers of x,y,z and r) and
+    an exponential decay factor alpha.
+ 2. Since the basis sets are specific for an atom TYPE, the individual functions occur on
+    all atoms of that type.
+ 3. The word 'Core' in the left margin signals that it is a Core Function (CF) : not a
+    degree of freedom in the valence set, but only used to ensure orthogonalization of
+    the other valence basis functions on the frozen Core Orbitals.
+
+
+ (power of) X  Y  Z  R     Alpha  on Atom
+            ==========     =====     ==========
+
+ H                                    1    2
+                                  ---------------------------------------------------------------------------
+            0  0  0  0     0.690      1    7
+            0  0  0  0     0.920      2    8
+            0  0  0  0     1.580      3    9
+            1  0  0  0     1.250      4   10
+            0  1  0  0     1.250      5   11
+            0  0  1  0     1.250      6   12
+
+ C                                    3
+                                  ---------------------------------------------------------------------------
+            0  0  0  0     7.680     13
+            0  0  0  0     5.000     14
+            0  0  0  1     1.280     15
+            0  0  0  1     2.100     16
+            0  0  0  1     4.600     17
+            1  0  0  0     0.820     18
+            0  1  0  0     0.820     19
+            0  0  1  0     0.820     20
+            1  0  0  0     1.480     21
+            0  1  0  0     1.480     22
+            0  0  1  0     1.480     23
+            1  0  0  0     2.940     24
+            0  1  0  0     2.940     25
+            0  0  1  0     2.940     26
+            2  0  0  0     2.200     27
+            1  1  0  0     2.200     28
+            1  0  1  0     2.200     29
+            0  2  0  0     2.200     30
+            0  1  1  0     2.200     31
+            0  0  2  0     2.200     32
+
+ Total number of charge fitting functions (nprimf)       184
+ Total number of Cartesian basis functions (naos)         32
+ Total number of Cartesian core functions  (ncos)          0
+
+1
+ ***************************************************************************************************
+
+
+
+                                              ***********************
+                                              *  T E C H N I C A L  *
+                                              ***********************
+  
+
+
+
+ =============================================================
+ P A R A L L E L I Z A T I O N  and  V E C T O R I Z A T I O N
+ =============================================================
+  
+ Nr of parallel processes:                              128
+ Maximum vector length in NumInt loops:                 128
+
+
+
+ =====================
+ S C F   U P D A T E S
+ =====================
+  
+ Max. nr. of cycles:                               300
+ Convergence criterion:                              0.0000010000
+   secondary criterion:                              0.0010000000
+
+ Mix parameter (when DIIS does not apply):           0.2000000000
+ Mixed ADIIS+SDIIS will be used                  
+    Max number of expansion vectors:                10
+    Pure ADIIS when Max([F,P]) is above              0.1000000000
+    Pure SDIIS when Max([F,P]) is below              0.0010000000
+ Automatic ElectronSmearing (in case of problematic SCF convergence) disabled
+
+
+
+ =================
+ P R E C I S I O N  ***  (General: NumInt, NeglectFunctionTails, ...)  ***
+ =================
+  
+
+ NumInt:           Target precision:                 4.0000000000
+ -------           Initial precision:                4.0000000000
+                   Min. precision (optimization):    4.0000000000
+
+ Neglect Functions:          Basis functions:        0.1000000000E-05
+ ------------------          Fit functions:          0.1000000000E-05
+
+
+
+ ===========================
+ L I N E A R   S C A L I N G
+ ===========================
+  
+
+ Cut-off radii density fit:                        0.1000000000E-07
+ Overlap cut-off criterion AO matrix elements:     0.1000000000E-05
+ Cut-offs for Coulomb potential and fitted density:0.1000000000E-07
+ Cut-off criterion for Coulomb multipole terms:    0.1000000000E-07
+ Progressive Convergence parameter:                 0.000000000    
+1
+ ***************************************************************************************************
+
+
+
+                                            ***************************
+                                            *  C O M P U T A T I O N  *
+                                            ***************************
+  
+
+ Number of elements of the density matrix on this node (used, total):       210       528
+
+
+
+ ===========================================
+ Numerical Integration : Fuzzy Cells (Becke)
+ ===========================================
+  
+ Becke grid quality: NORMAL         
+  
+ Lebedev angular grid order:             min:  11 max:  23
+ Nr. of radial points:                   min:  46 max:  52
+
+ Total nr. of points:      18526
+ Nr. of blocks:              145
+ Block length:               128
+ Nr. of dummy points:         34
+
+
+ Test of Precision of the Numerical Integration Grid
+ ===================================================
+
+ Integral of the Total Core Density:                   0.00000000000000
+
+
+ -------------------------------------------
+  COSMO surface
+  Area             =          189.047
+  Volume           =          240.398
+  Number of Points =          404
+ -------------------------------------------
+
+
+
+ ========================
+ Density Fitting (zlmFit)
+ ========================
+  
+ ZlmFit Fit Quality: NORMAL         
+  
+ Max L-expansion:                        min:   5 max:   6
+ Nr. of radial interpolation points:     min:  36 max:  48
+
+
+
+ ======================
+ RI Hartree-Fock Scheme
+ ======================
+  
+ Fit Set Quality     : NORMAL
+ Threshold Quality   : NORMAL
+ Integration Quality : NORMAL
+ Fit Generation Method : AUTO
+ Response Quality    : DEFAULT
+ Is Range Separated  :  F
+ 
+ RIHartreeFock Dependency: number of modified vectors:           0
+
+
+
+ =====
+ S C F  ***  ScaSCF  ***
+ =====
+  
+ Initial density matrix is calculated as sum of fragments
+
+ CYCLE    1
+ SCF Error: norm([F,P])=      1.541280337944, max([F,P])=      0.882058065664
+ orbitals (Q,E):
+ ---------------
+ A :1...13           ( 2.00   -10.4285)  ( 2.00    -0.8241)  ( 2.00    -0.5205)  ( 0.00    -0.3264)
+                     ( 0.00    -0.2650)  ( 0.00    -0.0187)  ( 0.00     0.0353)  ( 0.00     0.1290)
+                     ( 0.00     0.1368)  ( 0.00     0.1566)  ( 0.00     0.1812)  ( 0.00     0.3288)
+                     ( 0.00     0.4414)
+
+ CYCLE    2
+   MIX coefficients:  0.8000  0.2000
+ SCF Error: norm([F,P])=      0.462368429072, max([F,P])=      0.201331571922
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.5542)  ( 2.00    -0.8713)  ( 2.00    -0.5751)  ( 0.00    -0.3825)
+
+ CYCLE    3
+  SDIIS (wt  0.000): -2.0000  3.0000
+ A-DIIS (wt  1.000):  0.0000  1.0000
+  DIIS coefficients:  0.0000  1.0000
+ SCF Error: norm([F,P])=      0.319848733852, max([F,P])=      0.138783090502
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.9658)  ( 2.00    -1.0470)  ( 2.00    -0.7940)  ( 0.00    -0.5928)
+
+ CYCLE    4
+  SDIIS (wt  0.354): -1.1436  1.8297  0.3138
+ A-DIIS (wt  0.646):  0.0000  0.0000  1.0000
+  DIIS coefficients: -0.4053  0.6484  0.7568
+ SCF Error: norm([F,P])=      0.182159748138, max([F,P])=      0.064915352409
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.7076)  ( 2.00    -0.9728)  ( 2.00    -0.7237)  ( 0.00    -0.4943)
+
+ CYCLE    5
+  SDIIS (wt  0.783): -0.0562  0.0783  0.2394  0.7385
+ A-DIIS (wt  0.217):  0.0000  0.0000  0.0000  1.0000
+  DIIS coefficients: -0.0440  0.0613  0.1874  0.7953
+ SCF Error: norm([F,P])=      0.060846859490, max([F,P])=      0.022488987010
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.7772)  ( 2.00    -0.9876)  ( 2.00    -0.7376)  ( 0.00    -0.5173)
+
+ CYCLE    6
+  SDIIS (wt  0.982): -0.0369  0.0497  0.0348  0.2137  0.7387
+ A-DIIS (wt  0.018):  0.0000  0.0000  0.0000  0.0000  1.0000
+  DIIS coefficients: -0.0362  0.0488  0.0342  0.2099  0.7433
+ SCF Error: norm([F,P])=      0.007707156622, max([F,P])=      0.002752152120
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.7707)  ( 2.00    -0.9865)  ( 2.00    -0.7366)  ( 0.00    -0.5150)
+
+ CYCLE    7
+  SDIIS (wt  1.000):  0.0007 -0.0013  0.0005  0.0016  0.0149  0.9836
+  DIIS coefficients:  0.0007 -0.0013  0.0005  0.0016  0.0149  0.9836
+ SCF Error: norm([F,P])=      0.000180945346, max([F,P])=      0.000074603071
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.7708)  ( 2.00    -0.9866)  ( 2.00    -0.7366)  ( 0.00    -0.5150)
+
+ CYCLE    8
+  SDIIS (wt  1.000):  0.0000 -0.0000 -0.0000 -0.0007 -0.0058 -0.0259  1.0325
+  DIIS coefficients:  0.0000 -0.0000 -0.0000 -0.0007 -0.0058 -0.0259  1.0325
+ SCF Error: norm([F,P])=      0.000012922584, max([F,P])=      0.000006102217
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.7708)  ( 2.00    -0.9866)  ( 2.00    -0.7366)  ( 0.00    -0.5150)
+
+ CYCLE    9
+  SDIIS (wt  1.000): -0.0000  0.0000  0.0000  0.0000  0.0002 -0.0012 -0.0795  1.0804
+  DIIS coefficients: -0.0000  0.0000  0.0000  0.0000  0.0002 -0.0012 -0.0795  1.0804
+ SCF Error: norm([F,P])=      0.000000464973, max([F,P])=      0.000000251327
+ orbitals (Q,E):
+ ---------------
+ A :1...4            ( 2.00   -10.7708)  ( 2.00    -0.9866)  ( 2.00    -0.7366)  ( 0.00    -0.5150)
+
+ SCF CONVERGED
+ cosmo_calcen: 0.5 (esolb+esolc) (Hartrees) =   -0.514678
+
+ Solvation energy (screening term,uncorrected) =   -322.965172 kcal/mol
+
+ Solvation energy (dispersion and cavitation terms) =      0.353504 kcal/mol
+ Solvation Energy Contributions (Hartrees)
+          esola   esolb+esolc
+     0.51467771   -1.02935542
+ esol last cycle   -0.51467771
+
+ CYCLE   10
+1
+ ***************************************************************************************************
+
+
+
+                                                *******************
+                                                *  R E S U L T S  *
+                                                *******************
+  
+  
+ Hartree-Fock exchange energy:   -5.16921487581700     
+ *** Using FIT density in Focky
+  SDIIS (wt  1.000):  0.0000 -0.0000  0.0000 -0.0000 -0.0000  0.0002 -0.0002 -0.0361  1.0362
+  DIIS coefficients:  0.0000 -0.0000  0.0000 -0.0000 -0.0000  0.0002 -0.0002 -0.0361  1.0362
+ SCF Error: norm([F,P])=      0.000000026304, max([F,P])=      0.000000013273
+
+ Orbital Energies, per Irrep and Spin:
+ ======================================
+                        Occup              E (au)              E (eV)       Diff (eV) with prev. cycle
+                        -----      --------------------        ------       --------------------------
+ A
+               1        2.000     -0.10770817280954E+02      -293.089              -4.15E-07
+               2        2.000     -0.98658488530111E+00       -26.846              -3.39E-07
+               3        2.000     -0.73659194468124E+00       -20.044              -2.45E-07
+               4        0.000     -0.51504437922899E+00       -14.015
+               5        0.000     -0.44360332364341E+00       -12.071
+               6        0.000     -0.17353400056487E-01        -0.472
+               7        0.000     -0.12394664758853E-02        -0.034
+               8        0.000      0.10251274784149E+00         2.790
+               9        0.000      0.11398151164042E+00         3.102
+              10        0.000      0.12835350531706E+00         3.493
+              11        0.000      0.12895361417019E+00         3.509
+              12        0.000      0.26448333108140E+00         7.197
+              13        0.000      0.36378325642522E+00         9.899
+  
+ HOMO :        3 A                -0.73659194468124E+00
+ LUMO :        4 A                -0.51504437922899E+00
+  
+ cosmo_calcen: 0.5 (esolb+esolc) (Hartrees) =   -0.514678
+
+ Solvation energy (screening term,uncorrected) =   -322.965171 kcal/mol
+
+ Solvation energy (dispersion and cavitation terms) =      0.353504 kcal/mol
+ Solvation Energy Contributions (Hartrees)
+          esola   esolb+esolc
+     0.51467771   -1.02935541
+ esol last cycle   -0.51467771
+
+
+ All Electron Calculation, thus no Orbital Energies of the Core Orbitals are calculated
+
+
+ Fit test: (difference of exact and fit density, squared integrated, result summed over spins)
+         Sum-of-Fragments:                             0.00000000007930
+         Orthogonalized Fragments:                     0.00001410771762
+         SCF:                                          0.00008864399142
+
+
+
+ ==========================
+ Electron Density at Nuclei
+ ==========================
+  
+ The electron density is calculated at points on a small sphere around the center of a nucleus.
+ The printed electron density is the average electron density on these points.
+ The radius of the sphere is the printed approximate finite nuclear radius.
+
+         Atom        Nuclear Radius (Angstrom)             Electron Density (a.u.)
+         ----        -------------------------             -----------------------
+     1)   H                 0.0000181514                                0.40524
+     2)   H                 0.0000181514                                0.40524
+     3)   C                 0.0000320678                              127.57126
+
+
+
+ =======================================
+ M U L L I K E N   P O P U L A T I O N S
+ =======================================
+  
+ The survey below gives for each atom:
+ a) the total charge (Z minus electrons)
+ b) the net spin polarization (nr of electrons spin-A minus spin-B)
+ c) for each spin the atomic electron valence density (integrated) per L-value.
+
+ Atom              Charge    Spin density          S         P         D         F
+ ----              ------    ------------       ------    ------    ------    ------
+ 1 H               0.3071                       0.6339    0.0590    0.0000    0.0000
+ 2 H               0.3071                       0.6339    0.0590    0.0000    0.0000
+ 3 C               1.3859                       3.3070    1.2905    0.0166    0.0000
+
+ Populations of individual BAS functions
+ ----------------------------------------
+ 1 H            0.1485  0.0924  0.3930  0.0314  0.0000  0.0277
+ 2 H            0.1485  0.0924  0.3930  0.0314  0.0000  0.0277
+ 3 C            0.4800  1.5364  0.0488  1.3470 -0.1052 -0.3217  0.0000 -0.0110  1.2568 -0.0000
+                0.0439  0.3053  0.0000  0.0171  0.0215 -0.0000  0.0131 -0.0195 -0.0000  0.0016
+
+ Gross Charges per Atom (Z minus electrons)
+ ==========================================
+             0.3071    0.3071    1.3859
+ Net Total:  2.00000000
+
+
+ Atom-Atom Population Matrix (off-diagonal elements not doubled)
+ ===============================================================
+
+     1 :     0.4349
+     2 :    -0.0975    0.4349
+     3 :     0.3555    0.3555    3.9031
+
+
+
+ =================================================
+ H I R S H F E L D   C H A R G E   A N A L Y S I S
+ =================================================
+  
+ For each fragment: the (numerical) integral of rho(scf) * rho(fragment)/rho(sum-of-fragments)
+ (nuclear charges are included, electrons are counted negative)
+
+ The fragments and their ordering are defined in the early G E O M E T R Y output section.
+ If you use single-atom fragments, this usually implies that all atoms of the same
+ chemical type are grouped together. This may not be the order in which you listed them
+ in the input file!
+
+    1  H                         0.3701
+    2  H                         0.3701
+    3  C                         1.2598
+
+ Sum of these charges (accuracy NumInt/Tails) =           2.00001704
+
+
+
+ =============================
+ V O R O N O I   C H A R G E S
+ =============================
+  
+ For each atom: the (numerical) integral of the total electronic charge density in its Voronoi cell,
+ i.e. the region of space that is closer to that atom than to any other atom.
+ (cf. Wigner-Seitz cells in crystals)
+
+ Within the Voronoi cell the subintegrals over the atomic sphere and the remaining part are evaluated
+ separately to give the numbers of electrons (negative charge) in these regions.
+ The net total charge in the cell (including the nuclear charge) is also given.
+
+ Values are provided for
+    a) the Initial (sum-of-fragments) density
+    b) the Orthogonalized-Fragments density
+    c) the SCF density
+    d) the Voronoi Deformation Density (VDD): the difference SCF-Initial for the complete atomic cell
+
+
+  Atom                Initial                    OrthFrag                   SCF
+             Sphere RestCell NetTotal   Sphere RestCell NetTotal   Sphere RestCell NetTotal      VDD
+ -----       ------------------------   ------------------------   ------------------------    -----
+    1 H      -0.073   -1.430   -0.503   -0.092   -1.287   -0.379   -0.085   -0.938   -0.023    0.480
+    2 H      -0.073   -1.404   -0.477   -0.092   -1.271   -0.363   -0.085   -0.932   -0.017    0.460
+    3 C      -2.249   -2.771    0.980   -2.337   -2.921    0.742   -2.229   -1.732    2.039    1.060
+ ---------------------------------------------------------------------------------------------------
+ Total NetCharge:               0.000                      0.000                      2.000    2.000
+ (accuracy NumInt/Tails)
+
+ Remark: the 'NetTotal' Voronoi charges often do not match the Mulliken and/or Hirshfeld charges very
+ well. This is caused by the fact that chemically different atoms are not treated in accordance with
+ their relative sizes. (Voronoi cells are defined by boundary planes halfway between the atoms.)
+ However, the CHANGES in charge, comparing 'Initial' to 'SCF' for instance, do give a fair indication
+ of the flow of charge caused by the relaxation from sum-of-fragments to self-consistency.
+
+ Warning: the absolute accuracy of the VDD charges obtained using the Fuzzy Cells (Becke) integration
+ scheme is much poorer than the one obtained with an 'equivalent' Voronoi integration grid. 
+
+
+
+ =================================================================
+ M U L T I P O L E   D E R I V E D   C H A R G E   A N A L Y S I S
+ =================================================================
+
+ This charge analysis uses the atomic multipoles (obtained from the fitted density) up to some level X,
+ and reconstructs these multipoles exactly (up to level X) by distributing charges over all atoms.
+ This is achieved by using Lagrange multipliers and a weight function to keep the multipoles local.
+
+ Dummy atoms can be included (by setting INCDUM in MDC-block to 1) to obtain a fractional charge.
+ This is generally useful and necessary only for small symmetrical molecules, when there are not
+ enough degrees of freedom to reconstruct the multipoles.
+
+ Since the atomic multipoles are reconstructed up to level X,
+ the molecular multipoles are represented also up to level X.
+ The recommended level is to reconstruct up to quadrupole : -> MDC-q charges.
+
+ See: M. Swart, P.Th. van Duijnen, J.G. Snijders, J.Comput.Chem., (2001), p. 79-88.
+
+ ------------------------------------------------------------- 
+ Atomic electronic multipole moments from SCF equations (a.u.)
+ ------------------------------------------------------------- 
+
+   atom        charge        dip-x     dip-y     dip-z      quad-xx   quad-xy   quad-xz   quad-yy   quad-yz   quad-zz
+ --------------------------------------------------------------------------------------------------------------------
+    1 H      0.296957     0.071648 -0.000000 -0.120399     0.070269  0.000000 -0.047159 -0.044596 -0.000000 -0.025673
+    2 H      0.296957    -0.071648  0.000000 -0.120399     0.070269 -0.000000  0.047159 -0.044596 -0.000000 -0.025673
+    3 C      1.406087    -0.000000  0.000000  0.315953    -0.731028  0.000000 -0.000000  0.265673 -0.000000  0.465354
+
+ --------------------------------------- 
+ Multipole derived atomic charges (a.u.)
+ --------------------------------------- 
+
+ The MDC-m charges are just the Monopole terms in the multipole expansion, while for the MDC-d charges
+ also the Dipoles are reconstructed. The usually preferred charges are the MDC-q charges.
+ These reconstruct the Monopoles, Dipoles and Quadrupoles (both atomic AND molecular).
+
+        Atom    Level:     MDC-m        MDC-d        MDC-q
+ ---------------------------------------------------------
+     1     H            0.296957     0.264851     0.174414
+     2     H            0.296957     0.264851     0.174414
+     3     C            1.406087     1.470298     1.651171
+
+ ------------------------------------------------ 
+ Average absolute deviations in atomic multipoles
+ ------------------------------------------------ 
+
+ Stated here are the average differences between the atomic multipoles
+ and the reconstructed atomic multipoles (from the distributed charges).
+ If these values are not zero, this means there are not enough degrees of freedom,
+ to be able to reconstruct the atomic multipoles. (This usually happens only
+ for small and/or highly symmetric molecules). If this is the case, one could add
+ dummy atoms as extra point charges (and setting INCDUM in MDC-block to 1).
+
+ Level:                                 MDC-d        MDC-q
+ ---------------------------------------------------------
+ Charge   (a.u.)                       0.0000       0.0000
+ Dipole   (Debye)                      0.0000       0.1287
+ Quad.    (a.u.)                       0.1179       0.0563
+
+ --------------------------------------- 
+ Represented molecular multipole moments
+ --------------------------------------- 
+
+ Given here are the Molecular multipole moments from the atomic charges, and from the Fit Density.
+ Note that the atomic charges represent the latter, NOT the ones from the Exact density.
+
+            Q (a.u.)             Dipole moment (Debye)                                          Quadrupole moment (a.u.)
+                                 x         y         z              xx        xy        xz        yy        yz        zz
+------------------------------------------------------------------------------------------------------------------------
+MDC-m         2.0000        0.0000    0.0000  -17.8303        -10.8989    0.0000   -0.0000  -13.4333    0.0000   24.3322
+MDC-d         2.0000        0.0000    0.0000  -17.6393        -10.8001    0.0000   -0.0000  -13.0605    0.0000   23.8606
+MDC-q         2.0000        0.0000    0.0000  -17.1012        -10.5218    0.0000   -0.0000  -12.0104    0.0000   22.5322
+ 
+Fit.Dens.     2.0000        0.0000    0.0000  -17.6393        -11.0504   -0.0000   -0.0000  -13.5429   -0.0000   24.5933
+
+
+
+ =============
+ Dipole Moment  ***  (Debye)  ***
+ =============
+  
+ Vector   :         0.00000005     -0.00000000    -17.64100258
+ Magnitude:        17.64100258
+
+ This molecular dipole moment is calculated with analytic integration
+ ************************************************************************************
+ Since the molecule is NOT NEUTRAL, the dipole moment depends on the choice of origin
+ ************************************************************************************
+
+
+
+ =========================================
+ Quadrupole Moment (Buckingham convention)  ***  (a.u.)  ***
+ =========================================
+  
+      quad-xx        quad-xy        quad-xz        quad-yy        quad-yz        quad-zz
+    -11.05067068    -0.00000000    -0.00000015   -13.54673150     0.00000000    24.59740218
+
+ This molecular quadrupole moment is calculated with analytic integration
+1
+
+
+
+ ===========================
+ B O N D I N G   E N E R G Y  ***  (decomposition)  ***
+ ===========================
+  
+*** IMPORTANT NOTE ***
+
+The bond energy is computed as an energy difference between molecule and
+fragments. In particular when the fragments are single atoms, they are usually
+computed as SPHERICALLY SYMMETRIC and SPIN-RESTRICTED. Obviously, this usually
+does NOT represent the true atomic groundstate.
+
+To obtain the 'real' bond energy, (atomic) correction terms must be applied
+for the true (multiplet) fragment ground state. See ref: E.J.Baerends,
+V.Branchadell, M.Sodupe, Chem.Phys.Lett.265 (1997) 481
+
+General theoretical background on the bond energy decomposition scheme used
+here (Morokuma-Ziegler) can be found in the review paper:
+F.M. Bickelhaupt and E.J. Baerends,
+"Kohn-Sham Density Functional Theory: Predicting and Understanding Chemistry"
+In: Rev. Comput. Chem.; Lipkowitz, K. B. and Boyd, D. B., Eds.;
+Wiley-VCH: New York, 2000, Vol. 15, 1-86.
+
+Symbols used in the Bickelhaupt-Baerends (BB) paper are given below to make
+the direct connection to that paper, where detailed explanations can be found
+on the meaning of the various terms.
+
+
+                                                   hartree              eV         kcal/mol           kJ/mol
+                                      --------------------     -----------       ----------      -----------
+  pauli hf:                              0.068318773911246          1.8590            42.87           179.37
+  elstat hf:                            -0.113201658237186         -3.0804           -71.04          -297.21
+
+Pauli Repulsion
+  Kinetic (Delta T^0):                   2.764194473602039         75.2176          1734.56          7257.39
+  Delta V^Pauli Coulomb:                -1.181315693648969        -32.1452          -741.29         -3101.54
+  Delta V^Pauli Hybrid-X:               -0.262821853891111         -7.1517          -164.92          -690.04
+  Delta V^Pauli Hybrid-C:               -0.025815874843174         -0.7025           -16.20           -67.78
+  Delta V^Pauli HF-Exchange:            -0.044882884325940         -1.2213           -28.16          -117.84
+                                      --------------------     -----------       ----------      -----------
+  Total Pauli Repulsion:                 1.249358166892845         33.9968           783.98          3280.19
+ (Total Pauli Repulsion =
+  Delta E^Pauli in BB paper)
+
+Steric Interaction
+  Pauli Repulsion (Delta E^Pauli):       1.249358166892845         33.9968           783.98          3280.19
+  Electrostatic Interaction:            -0.161705455205229         -4.4002          -101.47          -424.56
+ (Electrostatic Interaction =
+  Delta V_elstat in the BB paper)
+                                      --------------------     -----------       ----------      -----------
+  Total Steric Interaction:              1.087652711687616         29.5965           682.51          2855.63
+ (Total Steric Interaction =
+  Delta E^0 in the BB paper)
+
+Orbital Interactions
+  A:                                    -0.339077818079619         -9.2268          -212.77          -890.25
+  HF orbital correction:                 0.000000000941878          0.0000             0.00             0.00
+                                      --------------------     -----------       ----------      -----------
+  Total Orbital Interactions:           -0.339077817137741         -9.2268          -212.77          -890.25
+
+Alternative Decomposition Orb.Int.
+  Kinetic:                              -3.216718567267323        -87.5314         -2018.52         -8445.49
+  Coulomb:                               2.362641075589370         64.2907          1482.58          6203.11
+  XC+HF:                                 0.514999674540212         14.0139           323.17          1352.13
+  XC only:                               0.518453816976870         14.1078           325.33          1361.20
+  HF Orbital:                           -0.003454142436658         -0.0940            -2.17            -9.07
+                                      --------------------     -----------       ----------      -----------
+  Total Orbital Interactions:           -0.339077817137741         -9.2268          -212.77          -890.25
+
+  Residu (E=Steric+OrbInt+Res):         -0.000225951907167         -0.0061            -0.14            -0.59
+
+
+  Solvation Energy (el):                -0.514677707506387        -14.0051          -322.97         -1351.29
+
+Post-SCF Solvation Energies
+  Solvation Energy (cd):                 0.000563344558337          0.0153             0.35             1.48
+
+Total Bonding Energy:                    0.234234579694657          6.3738           146.98           614.98
+
+
+Summary of Bonding Energy (energy terms are taken from the energy decomposition above)
+======================================================================================
+
+  Electrostatic Energy:                 -0.161705455205229         -4.4002          -101.47          -424.56
+  Kinetic Energy:                       -0.452524093665284        -12.3138          -283.96         -1188.10
+  Coulomb (Steric+OrbInt) Energy:        1.181099430033234         32.1394           741.15          3100.98
+  XC Energy:                             0.181479061479987          4.9383           113.88           476.47
+  Solvation:                            -0.514114362948050        -13.9898          -322.61         -1349.81
+                                      --------------------     -----------       ----------      -----------
+  Total Bonding Energy:                  0.234234579694658          6.3738           146.98           614.98
+
+
+Correction terms (incorporated in energies above; only for test purposes):
+
+1. Indication of fit-quality: 1st-order fit-correction used in the energy (hartree):  -0.0005731314
+2. Electrostatic (Fit correction):   0.0000000000
+1
+
+
+
+ =======================================================
+ S F O   P O P U L A T I O N S ,   M O   A N A L Y S I S
+ =======================================================
+  
+ A Mulliken population analysis is performed on (input-)selected MOs. All populations refer to SFOs.
+ BAS populations may have been printed directly after the SCF part.
+
+
+                                       === A ===
+
+
+ SFO contributions (%) per orbital
+ (multiplication by the orbital occupation yields the SFO Gross Populations)
+
+ Orb.:        1      2      3      4      5      6      7
+ occup:     2.00   2.00   2.00   0.00   0.00   0.00   0.00
+ CF+SFO     ----   ----   ----   ----   ----   ----   ----
+ ------
+      1:   -0.02  13.94  17.61   3.11   0.00  40.88  57.94
+      2:   -0.00  -0.15   0.45   0.75   0.00  15.39  -4.99
+      3:   -0.00  -0.43   0.30   0.16  -0.00  -1.31  -0.44
+      4:   -0.01   1.99  -0.41   0.33  -0.00   1.62  -0.54
+      5:    0.00   0.00   0.00   0.00   1.81   0.00  -0.00
+      6:   -0.00   0.66   0.72   0.18  -0.00  -0.03   1.17
+      7:   -0.02  13.94  17.61   3.11  -0.00  40.88  57.94
+      8:   -0.00  -0.15   0.45   0.75   0.00  15.39  -4.99
+      9:   -0.00  -0.43   0.30   0.16  -0.00  -1.31  -0.44
+     10:   -0.01   1.99  -0.41   0.33  -0.00   1.62  -0.54
+     11:    0.00   0.00   0.00  -0.00   1.81  -0.00   0.00
+     12:   -0.00   0.66   0.72   0.18  -0.00  -0.03   1.17
+     13:  100.09  -0.00  -0.00  -0.00   0.00   0.00   0.00
+     14:   -0.00  64.64   0.00  13.44  -0.00  -2.61   0.00
+     15:    0.00   0.64   0.00  -0.22   0.00 -11.66   0.00
+     18:   -0.00  -0.00  57.37   0.00  -0.00   0.00  10.59
+     19:    0.00  -0.00   4.99  -0.00  -0.00   0.00 -19.78
+     21:   -0.00   0.00   0.00   0.00  91.60  -0.00   0.00
+     22:    0.00   0.00   0.00   0.00   4.73   0.00   0.00
+     24:   -0.00   2.41   0.00  73.52   0.00   1.82  -0.00
+     25:    0.00   0.17   0.00   4.20  -0.00  -1.27   0.00
+     30:    0.00  -0.00   0.65  -0.00   0.00   0.00   3.54
+
+
+ Summation over all MOs, multiplied by occupation: Total SFO Gross Populations in this Irrep
+ ===========================================================================================
+
+     0.63    0.01   -0.00    0.03    0.00    0.03    0.63    0.01   -0.00    0.03    0.00    0.03
+     2.00    1.29    0.01   -0.00   -0.00    1.15    0.10   -0.01    0.00    0.00    0.00    0.05
+     0.00   -0.00   -0.00    0.00   -0.00    0.01   -0.00
+
+
+
+ List of selected MOs, ordered by energy, with the most significant SFO gross populations
+ ========================================================================================
+
+ Each percentage contribution in the table below corres ponds to the indicated SFO.
+ In general, a SFO may be a linear combination of several Fragment Orbitals on the same,
+ or on symmetry-related Fragments. Only the first 'member' of such a combination is
+ specified here. A full definition of all SFOs is given in an earlier part of the output.
+ The numbering of the SFOs in this table does NOT include the Core Orbitals, and starts
+ from one for each symmetry representation, as in the SFO definition list earlier.
+
+       E(eV)  Occ       MO           %     SFO (first member)   E(eV)  Occ   Fragment
+ -------------------------------------------------------------------------------------
+
+     -26.846  2.00     2 A         64.64%     2 S             -15.345  2.00     3 C
+                                   13.94%     1 S              -6.641  1.00     1 H
+                                   13.94%     1 S              -6.641  1.00     2 H
+                                    2.41%     1 P:z            -5.110  0.67     3 C
+                                    1.99%     1 P:x            11.865  0.00     1 H
+                                    1.99%     1 P:x            11.865  0.00     2 H
+     -20.044  2.00     3 A         57.37%     1 P:x            -5.110  0.67     3 C
+                                   17.61%     1 S              -6.641  1.00     2 H
+                                   17.61%     1 S              -6.641  1.00     1 H
+                                    4.99%     2 P:x             5.204  0.00     3 C
+     -14.015  0.00     4 A         73.52%     1 P:z            -5.110  0.67     3 C
+                                   13.44%     2 S             -15.345  2.00     3 C
+                                    4.20%     2 P:z             5.204  0.00     3 C
+                                    3.11%     1 S              -6.641  1.00     2 H
+                                    3.11%     1 S              -6.641  1.00     1 H
+     -12.071  0.00     5 A         91.60%     1 P:y            -5.110  0.67     3 C
+                                    4.73%     2 P:y             5.204  0.00     3 C
+                                    1.81%     1 P:y            11.865  0.00     2 H
+                                    1.81%     1 P:y            11.865  0.00     1 H
+
+
+
+ =======================================================================
+ Electrostatic potential at the Nuclei due to electrons and other nuclei
+ =======================================================================
+  
+         Atom                  Potential
+         ----                  ---------
+     1)   H                   0.19317757
+     2)   H                   0.19317759
+     3)   C                  13.69517000
+ Mulliken charges used for AMS results%charges...
+
+
+    =====================
+     CALCULATION RESULTS
+    =====================
+
+Energy (hartree)             0.23423458
+
+
+--------------
+Atomic charges
+--------------
+  Index   Atom    Charge
+      1      H    0.3071
+      2      H    0.3071
+      3      C    1.3859
+
+
+Dipole moment vector    (Debye):     0.00000005   -0.00000000  -17.64100258
+              magnitude (Debye):    17.64100258
+
+
+-----------------------
+Molecular orbitals info
+-----------------------
+n orbitals:               31
+n spin:                    1
+
+Note: only printing virtual orbitals with
+      energy smaller than HOMO + 100. eV
+
+HOMO (eV):             -20.0437
+LUMO (eV):             -14.0151
+HOMO-LUMO gap (eV):      6.0286
+
+   Index   Energy (eV)    Occupation
+      27       57.7165         0.000       
+      26       51.8130         0.000       
+      25       49.7028         0.000       
+      24       49.4303         0.000       
+      23       48.2653         0.000       
+      22       39.6066         0.000       
+      21       36.8555         0.000       
+      20       36.0967         0.000       
+      19       27.6443         0.000       
+      18       26.8171         0.000       
+      17       20.3268         0.000       
+      16       14.8169         0.000       
+      15       13.7379         0.000       
+      14       10.2879         0.000       
+      13        9.8990         0.000       
+      12        7.1970         0.000       
+      11        3.5090         0.000       
+      10        3.4927         0.000       
+       9        3.1016         0.000       
+       8        2.7895         0.000       
+       7       -0.0337         0.000       
+       6       -0.4722         0.000       
+       5      -12.0711         0.000       
+       4      -14.0151         0.000 < LUMO
+       3      -20.0437         2.000 < HOMO
+       2      -26.8463         2.000       
+       1     -293.0889         2.000       
+
+AMS application finished. Exiting.
+NORMAL TERMINATION
+     Total cpu time:       4.62
+  Total system time:      20.32
+ Total elapsed time:      28.46
